@@ -1,9 +1,12 @@
 /* =========================================================
    GuardHealth Technologies
-   Main Stylesheet
+   style.css
 ========================================================= */
 
-/* ---------- Reset ---------- */
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
     margin:0;
     padding:0;
@@ -15,11 +18,80 @@ html{
 }
 
 body{
-    font-family:'Inter',sans-serif;
+    font-family:"Inter",sans-serif;
     background:var(--bg);
     color:var(--text);
-    transition:.35s;
     overflow-x:hidden;
+    transition:
+        background .4s ease,
+        color .4s ease;
+    position:relative;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+
+    background:
+    radial-gradient(circle at 20% 20%,
+    rgba(0,184,217,.12),
+    transparent 30%),
+
+    radial-gradient(circle at 80% 10%,
+    rgba(22,199,132,.10),
+    transparent 30%),
+
+    radial-gradient(circle at 50% 80%,
+    rgba(10,61,98,.08),
+    transparent 45%);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background-image:
+    linear-gradient(
+        rgba(255,255,255,.05) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.05) 1px,
+        transparent 1px
+    );
+
+    background-size:60px 60px;
+
+    opacity:.35;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4{
+    font-weight:800;
+    letter-spacing:-.03em;
+}
+
+p{
+    color:var(--text-light);
+    line-height:1.8;
+    font-size:1.05rem;
 }
 
 a{
@@ -32,192 +104,520 @@ img{
     max-width:100%;
 }
 
-/* ---------- Sections ---------- */
-
-section{
-    padding:90px 8%;
-}
-
-/* ---------- Navbar ---------- */
-
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:1000;
-    backdrop-filter:blur(20px);
-    background:rgba(248,251,253,.75);
-    border-bottom:1px solid rgba(0,0,0,.05);
-}
-
-[data-theme="dark"] header{
-    background:rgba(8,19,28,.75);
-}
-
-nav{
-    max-width:1400px;
-    margin:auto;
-    height:80px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 32px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    font-weight:800;
-    font-size:1.25rem;
-}
-
-.logo img{
-    width:42px;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:34px;
-}
-
-nav ul a{
-    font-weight:600;
-    color:var(--text-light);
-    transition:.3s;
-}
-
-nav ul a:hover{
-    color:var(--primary);
-}
-
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-/* ---------- Buttons ---------- */
-
 button{
     border:none;
-    cursor:pointer;
     font-family:inherit;
-    transition:.3s;
+    cursor:pointer;
 }
 
-.primary{
-    background:var(--gradient);
-    color:white;
-    padding:14px 30px;
+/* =========================================================
+   SECTION
+========================================================= */
+
+section{
+    width:min(var(--container),92%);
+    margin:auto;
+    padding:140px 0;
+}
+
+.section-label{
+
+    display:inline-block;
+
+    margin-bottom:18px;
+
+    padding:8px 18px;
+
     border-radius:999px;
+
+    background:rgba(0,184,217,.08);
+
+    color:var(--secondary);
+
+    font-size:.78rem;
+
     font-weight:700;
-    box-shadow:var(--shadow);
+
+    letter-spacing:.12em;
+}
+
+section h2{
+
+    font-size:clamp(2.5rem,5vw,4rem);
+
+    margin-bottom:24px;
+
+    max-width:850px;
+
+}
+
+section p{
+
+    max-width:720px;
+
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary{
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    background:var(--gradient-primary);
+
+    color:white;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
 }
 
 .primary:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--shadow-hover);
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--glow-blue);
+
 }
 
 .secondary{
-    padding:14px 30px;
+
+    padding:16px 34px;
+
     border-radius:999px;
-    background:white;
-    border:2px solid var(--primary);
-    color:var(--primary);
-    font-weight:700;
+
+    border:1px solid var(--border);
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    color:var(--text);
+
+    transition:var(--transition);
+
 }
 
 .secondary:hover{
-    background:var(--primary);
-    color:white;
+
+    background:rgba(0,184,217,.08);
+
+    transform:translateY(-4px);
+
 }
 
-/* ---------- Hero ---------- */
+/* =========================================================
+   HERO
+========================================================= */
 
 #hero{
+
     min-height:100vh;
 
-    display:grid;
-    grid-template-columns:1.1fr 1fr;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
 
     align-items:center;
-    gap:80px;
 
-    padding-top:140px;
+    text-align:center;
+
+    gap:55px;
+
+    position:relative;
 }
 
-.hero-left h1{
-    font-size:4.5rem;
-    line-height:1.05;
-    margin:22px 0;
-    font-weight:800;
-}
+.hero-tag{
 
-.hero-left p{
-    font-size:1.1rem;
-    line-height:1.9;
-    color:var(--text-light);
-    max-width:650px;
-}
+    display:inline-flex;
 
-.badge{
-    display:inline-block;
+    gap:12px;
 
-    padding:10px 18px;
+    align-items:center;
 
-    background:#EAF4FF;
-    color:var(--primary);
+    padding:12px 24px;
 
     border-radius:999px;
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--border);
+
+    font-size:.82rem;
+
     font-weight:700;
+
+    letter-spacing:.08em;
+
+    color:var(--secondary);
+
+}
+
+.hero-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:26px;
+
+    max-width:900px;
+
+}
+
+.hero-content h1{
+
+    font-size:clamp(4rem,8vw,7rem);
+
+    line-height:.95;
+
+    max-width:1000px;
+
+}
+
+.hero-content p{
+
+    max-width:720px;
+
+    font-size:1.18rem;
+
 }
 
 .hero-buttons{
+
     display:flex;
-    gap:18px;
-    margin:40px 0;
+
+    gap:20px;
+
+    margin-top:12px;
+
 }
 
-.hero-stats{
-    display:flex;
-    gap:22px;
-    margin-top:45px;
-}
+/* =========================================================
+   INTERACTIVE CORE
+========================================================= */
 
-.hero-stats div{
-    background:var(--card);
-    padding:24px;
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    min-width:170px;
-}
+#medical-core{
 
-.hero-stats h2{
-    color:var(--primary);
-    margin-bottom:8px;
-}
-
-.hero-stats p{
-    font-size:.95rem;
-}
-
-/* ---------- Hero Animation Area ---------- */
-
-.hero-right{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#medicalCanvas{
-    width:560px;
-    height:560px;
     position:relative;
+
+    width:min(760px,90vw);
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+#particleCanvas{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+}
+
+.center-core{
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--glass-border);
+
+    box-shadow:
+        var(--shadow-lg),
+        var(--glow-blue);
+
+}
+
+.center-core img{
+
+    width:60px;
+
+}
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-indicator{
+
+    position:absolute;
+
+    bottom:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.scroll-indicator span{
+
+    width:28px;
+    height:48px;
+
+    border-radius:20px;
+
+    border:2px solid var(--border);
+
+    position:relative;
+
+}
+
+.scroll-indicator span::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:8px;
+
+    width:6px;
+    height:6px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:var(--secondary);
+
+    animation:scrollIndicator 2s infinite;
+
+}
+
+/* =========================================================
+   ECOSYSTEM
+========================================================= */
+
+#ecosystem{
+
+    text-align:center;
+
+}
+
+#ecosystemCanvas{
+
+    margin-top:80px;
+
+    height:700px;
+
+    border-radius:40px;
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--border);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* =========================================================
+   TECHNOLOGY
+========================================================= */
+
+.tech-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:28px;
+
+    margin-top:60px;
+
+}
+
+.tech-item{
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--border);
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+}
+
+.tech-item:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:var(--shadow-md);
+
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
+#cta{
+
+    text-align:center;
+
+}
+
+#cta h2{
+
+    margin-inline:auto;
+
+}
+
+#cta p{
+
+    margin:30px auto;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    width:min(var(--container),92%);
+
+    margin:auto;
+
+    padding:100px 0 60px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:80px;
+
+    border-top:1px solid var(--border);
+
+}
+
+footer h3{
+
+    font-size:1.5rem;
+
+    margin-bottom:18px;
+
+}
+
+footer p{
+
+    max-width:380px;
+
+}
+
+footer a{
+
+    display:block;
+
+    margin-bottom:14px;
+
+    color:var(--text-light);
+
+    transition:var(--transition-fast);
+
+}
+
+footer a:hover{
+
+    color:var(--primary);
+
+    transform:translateX(6px);
+
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+.glass{
+
+    background:var(--surface);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--glass-border);
+
+}
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+}
+
+.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition:1s ease;
+
+}
+
+/* =========================================================
+   KEYFRAME PLACEHOLDERS
+========================================================= */
+
+@keyframes scrollIndicator{
+
+    0%{
+        opacity:0;
+        transform:translate(-50%,0);
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:translate(-50%,20px);
+    }
+
 }
