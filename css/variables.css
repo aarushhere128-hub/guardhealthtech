@@ -1,0 +1,42 @@
+:root{
+
+    /* Brand */
+    --primary:#0F4C81;
+    --secondary:#00A878;
+    --accent:#4CC9F0;
+
+    /* Backgrounds */
+    --bg:#F8FBFD;
+    --bg-secondary:#EDF6F9;
+    --card:#FFFFFF;
+
+    /* Text */
+    --text:#17212B;
+    --text-light:#5F6B7A;
+
+    /* Effects */
+    --shadow:0 15px 45px rgba(15,76,129,.10);
+    --shadow-hover:0 25px 60px rgba(15,76,129,.18);
+
+    --radius:22px;
+
+    --gradient:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+[data-theme="dark"]{
+
+    --bg:#08131C;
+    --bg-secondary:#0F1C27;
+    --card:#142431;
+
+    --text:#F4F8FB;
+    --text-light:#B7C3CF;
+
+    --shadow:0 15px 45px rgba(0,0,0,.35);
+    --shadow-hover:0 25px 60px rgba(0,0,0,.5);
+}
