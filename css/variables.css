@@ -1,42 +1,149 @@
+/* =========================================================
+   GuardHealth Technologies
+   variables.css
+========================================================= */
+
 :root{
 
-    /* Brand */
-    --primary:#0F4C81;
-    --secondary:#00A878;
-    --accent:#4CC9F0;
+    /* =====================================================
+       Brand Colors
+    ===================================================== */
 
-    /* Backgrounds */
-    --bg:#F8FBFD;
-    --bg-secondary:#EDF6F9;
-    --card:#FFFFFF;
+    --primary: #0A3D62;
+    --primary-light: #145DA0;
+    --secondary: #00B8D9;
+    --accent: #16C784;
 
-    /* Text */
-    --text:#17212B;
-    --text-light:#5F6B7A;
+    /* =====================================================
+       Backgrounds
+    ===================================================== */
 
-    /* Effects */
-    --shadow:0 15px 45px rgba(15,76,129,.10);
-    --shadow-hover:0 25px 60px rgba(15,76,129,.18);
+    --bg: #F8FBFD;
+    --bg-secondary: #EEF4F8;
+    --bg-dark: #08131F;
 
-    --radius:22px;
+    /* =====================================================
+       Surfaces
+    ===================================================== */
 
-    --gradient:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+    --surface: rgba(255,255,255,0.72);
+    --surface-solid: #FFFFFF;
+    --surface-dark: rgba(18,24,38,0.85);
+
+    /* =====================================================
+       Typography
+    ===================================================== */
+
+    --text: #14213D;
+    --text-light: #5C6B7A;
+    --text-muted: #90A0AF;
+    --text-white: #FFFFFF;
+
+    /* =====================================================
+       Borders
+    ===================================================== */
+
+    --border: rgba(20,33,61,0.08);
+    --border-light: rgba(255,255,255,0.35);
+
+    /* =====================================================
+       Shadows
+    ===================================================== */
+
+    --shadow-sm: 0 6px 18px rgba(10,61,98,.08);
+    --shadow-md: 0 15px 40px rgba(10,61,98,.12);
+    --shadow-lg: 0 30px 80px rgba(10,61,98,.18);
+
+    /* =====================================================
+       Glow Effects
+    ===================================================== */
+
+    --glow-blue: 0 0 40px rgba(0,184,217,.35);
+    --glow-green: 0 0 40px rgba(22,199,132,.30);
+
+    /* =====================================================
+       Gradients
+    ===================================================== */
+
+    --gradient-primary: linear-gradient(
+        135deg,
+        #0A3D62,
+        #145DA0
+    );
+
+    --gradient-accent: linear-gradient(
+        135deg,
+        #00B8D9,
+        #16C784
+    );
+
+    --gradient-hero: radial-gradient(
+        circle at top,
+        rgba(0,184,217,.12),
+        transparent 60%
+    );
+
+    /* =====================================================
+       Glass Effect
+    ===================================================== */
+
+    --glass: rgba(255,255,255,.55);
+    --glass-border: rgba(255,255,255,.35);
+    --blur: blur(18px);
+
+    /* =====================================================
+       Border Radius
+    ===================================================== */
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-xl: 42px;
+    --radius-pill: 999px;
+
+    /* =====================================================
+       Layout
+    ===================================================== */
+
+    --container: 1280px;
+    --navbar-height: 82px;
+
+    /* =====================================================
+       Animation
+    ===================================================== */
+
+    --transition-fast: .25s ease;
+    --transition: .4s cubic-bezier(.22,1,.36,1);
+    --transition-slow: .8s cubic-bezier(.22,1,.36,1);
+
 }
+
+
+/* =========================================================
+   Dark Theme
+========================================================= */
 
 [data-theme="dark"]{
 
-    --bg:#08131C;
-    --bg-secondary:#0F1C27;
-    --card:#142431;
+    --bg:#07111D;
+    --bg-secondary:#101B2B;
 
-    --text:#F4F8FB;
-    --text-light:#B7C3CF;
+    --surface:rgba(20,28,42,.72);
+    --surface-solid:#111C2D;
+    --surface-dark:#111827;
 
-    --shadow:0 15px 45px rgba(0,0,0,.35);
-    --shadow-hover:0 25px 60px rgba(0,0,0,.5);
+    --text:#F4F7FA;
+    --text-light:#B7C4D3;
+    --text-muted:#7E8C9B;
+
+    --border:rgba(255,255,255,.08);
+    --border-light:rgba(255,255,255,.12);
+
+    --glass:rgba(18,25,38,.55);
+    --glass-border:rgba(255,255,255,.08);
+
+    --shadow-sm:0 8px 20px rgba(0,0,0,.25);
+    --shadow-md:0 18px 45px rgba(0,0,0,.35);
+    --shadow-lg:0 30px 80px rgba(0,0,0,.45);
+
 }
