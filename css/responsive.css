@@ -1,1 +1,44 @@
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
 
+/* Large Desktop */
+@media (min-width:1600px){
+
+}
+
+/* Laptop */
+@media (max-width:1200px){
+
+}
+
+/* Tablet */
+@media (max-width:992px){
+
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+}
+
+/* Small Phones */
+@media (max-width:480px){
+
+}
+
+/* Landscape Phones */
+@media (max-height:600px) and (orientation:landscape){
+
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+}
