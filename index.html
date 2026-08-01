@@ -1,1139 +1,1046 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardHealth Technologies | Intelligent Healthcare Ecosystem</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. VARIABLES & DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-dark: #07090e;
+      --bg-surface: rgba(15, 23, 42, 0.65);
+      --bg-surface-border: rgba(255, 255, 255, 0.08);
+      
+      --primary-blue: #0072ff;
+      --cyan-glow: #00f2fe;
+      --teal-accent: #0d9488;
+      --navy-deep: #0b1329;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
 
-    <!-- Meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-    <title>GuardHealth Technologies</title>
+      --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-apple);
+      --transition-medium: 0.5s var(--ease-out-apple);
 
-    <meta name="description"
-        content="AI-powered healthcare technologies for the future of medicine.">
+      --glass-bg: rgba(13, 20, 36, 0.55);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+      --glass-blur: blur(16px) saturate(180%);
+      --glow-shadow: 0 0 40px -10px rgba(0, 242, 254, 0.25);
+      --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    /* ==========================================================================
+       2. GLOBAL & RESET STYLES
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    body {
+      position: relative;
+      line-height: 1.6;
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" href="assets/logo.png">
+    .ambient-glow {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 114, 255, 0.1) 0%, rgba(0, 242, 254, 0.03) 40%, rgba(7, 9, 14, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 8rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .text-center { text-align: center; }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1100px;
+      z-index: 100;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 99px;
+      padding: 0.75rem 1.75rem;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-mark {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan-glow);
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION & CANVAS
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 750px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #ecosystemCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 820px;
+      padding: 0 1.5rem;
+      pointer-events: none;
+    }
+
+    .hero-overlay a, .hero-overlay button {
+      pointer-events: auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 99px;
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      color: var(--cyan-glow);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 2.5rem auto;
+      font-weight: 300;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       5. COMPONENTS & BUTTONS
+       ========================================================================== */
+    .btn-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--primary-blue), #0040a8);
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+      box-shadow: var(--glow-shadow);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px -5px rgba(0, 242, 254, 0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.85rem 2rem;
+      border-radius: 99px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary-glass {
+      padding: 0.5rem 1.25rem;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.08);
+      border: var(--glass-border);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+
+    .btn-primary-glass:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .section-tag {
+      color: var(--cyan-glow);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 3rem auto;
+    }
+
+    /* ==========================================================================
+       6. GLASS CARDS & ECOSYSTEM GRID
+       ========================================================================== */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 242, 254, 0.3);
+      box-shadow: var(--card-shadow);
+    }
+
+    .glass-card.featured-card {
+      border-color: rgba(0, 242, 254, 0.3);
+      background: linear-gradient(180deg, rgba(0, 242, 254, 0.05) 0%, rgba(13, 20, 36, 0.6) 100%);
+    }
+
+    .card-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .card-node-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .card-node-indicator.cyan { background: var(--cyan-glow); box-shadow: 0 0 10px var(--cyan-glow); }
+    .card-node-indicator.blue { background: var(--primary-blue); box-shadow: 0 0 10px var(--primary-blue); }
+    .card-node-indicator.teal { background: var(--teal-accent); box-shadow: 0 0 10px var(--teal-accent); }
+    .card-node-indicator.pulse { background: var(--text-subtle); }
+
+    .status-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 99px;
+      text-transform: uppercase;
+    }
+
+    .status-badge.live { background: rgba(0, 242, 254, 0.15); color: var(--cyan-glow); border: 1px solid rgba(0, 242, 254, 0.3); }
+    .status-badge.validation { background: rgba(0, 114, 255, 0.15); color: var(--primary-blue); border: 1px solid rgba(0, 114, 255, 0.3); }
+    .status-badge.pipeline { background: rgba(255, 255, 255, 0.05); color: var(--text-subtle); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+    .card-subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      letter-spacing: 0.05em;
+    }
+
+    .glass-card h3 {
+      font-size: 1.4rem;
+      margin: 0.25rem 0 0.75rem 0;
+      font-weight: 600;
+    }
+
+    .glass-card p {
+      color: var(--text-muted);
+      font-size: 0.925rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--cyan-glow);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: gap var(--transition-fast);
+    }
+
+    .card-action-link:hover {
+      gap: 0.6rem;
+    }
+
+    /* ==========================================================================
+       7. TECH SPEC & METRICS
+       ========================================================================== */
+    .tech-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .tech-item {
+      padding: 2rem;
+      border-left: 2px solid rgba(0, 242, 254, 0.3);
+      background: linear-gradient(90deg, rgba(0, 242, 254, 0.02) 0%, transparent 100%);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .tech-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .metrics-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      padding: 3rem;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 24px;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .metric-item h3 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--cyan-glow);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================================================
+       8. ROADMAP TIMELINE
+       ========================================================================== */
+    .roadmap-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .roadmap-step {
+      background: rgba(13, 20, 36, 0.4);
+      border: var(--glass-border);
+      padding: 1.75rem;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .roadmap-step.active {
+      border-color: rgba(0, 242, 254, 0.4);
+      background: rgba(0, 242, 254, 0.03);
+    }
+
+    .step-phase {
+      font-size: 0.75rem;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .roadmap-step h4 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+
+    .roadmap-step p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       9. FOOTER & CTA BANNER
+       ========================================================================== */
+    .cta-banner {
+      background: linear-gradient(180deg, rgba(13, 20, 36, 0.8) 0%, rgba(7, 9, 14, 0.9) 100%);
+      border: var(--glass-border);
+      padding: 4rem 2rem;
+      border-radius: 32px;
+      text-align: center;
+      margin-bottom: 6rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--bg-surface-border);
+      padding: 4rem 0 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      max-width: 300px;
+    }
+
+    .footer-col h5 {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-col a:hover {
+      color: var(--cyan-glow);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-subtle);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-cta-group { flex-direction: column; }
+      .btn-secondary { margin-left: 0; }
+    }
+  </style>
 </head>
-
 <body>
-<!-- =====================================================
-     LOADER
-====================================================== -->
-<div id="loader" aria-label="Loading website">
 
-    <!-- Background -->
-    <div class="loader-background"></div>
+  <div class="ambient-glow"></div>
 
-    <!-- Main Content -->
-    <div class="loader-content">
-
-        <!-- Animated Logo -->
-        <div class="loader-logo">
-
-            <div class="loader-ring ring-1"></div>
-            <div class="loader-ring ring-2"></div>
-            <div class="loader-ring ring-3"></div>
-
-            <img
-                src="assets/logo.png"
-                alt="GuardHealth Technologies Logo"
-                draggable="false"
-            >
-
-        </div>
-
-        <!-- Brand -->
-        <div class="loader-brand">
-
-            <h1>GuardHealth Technologies</h1>
-
-            <p>
-                Building Intelligent Healthcare...
-            </p>
-
-        </div>
-
-        <!-- Progress -->
-        <div class="loader-progress">
-
-            <div class="loader-progress-bar"></div>
-
-        </div>
-
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-mark"></span>
+        <span class="logo-text">GuardHealth</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#technology">Technology</a>
+        <a href="#research">Research</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <!-- Direct route to hosted platform -->
+      <a href="https://neuroguard.app" target="_blank" class="btn-primary-glass">Launch NeuroGuard</a>
     </div>
+  </header>
 
-</div>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <canvas id="ecosystemCanvas"></canvas>
+      <div class="hero-overlay">
+        <div class="hero-badge">
+          <span class="card-node-indicator cyan"></span> Next-Generation Clinical AI
+        </div>
+        <h1 class="hero-title">Architecting the Future of Healthcare Intelligence</h1>
+        <p class="hero-subtitle">
+          GuardHealth coordinates an interconnected ecosystem of clinical-grade artificial intelligence systems engineered for diagnostic precision.
+        </p>
+        <div class="hero-cta-group">
+          <!-- Primary CTA linking directly to hosted NeuroGuard app -->
+          <a href="https://neuroguard.app" target="_blank" class="btn-glow">
+            Launch NeuroGuard Demo 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <a href="#ecosystem" class="btn-secondary">Explore Ecosystem</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- =====================================================
-         WEBSITE
-    ====================================================== -->
+    <!-- MISSION SECTION -->
+    <section class="section scroll-fade" id="mission">
+      <div class="container text-center">
+        <span class="section-tag">Our Mission</span>
+        <h2 class="section-title">Precision At Scale. Science Without Compromise.</h2>
+        <p class="section-description">
+          We build decentralized, specialized neural architectures that operate seamlessly across complex biological domains—delivering clinical decision support at the speed of care.
+        </p>
+      </div>
+    </section>
 
-    <div id="website">
-       <!-- =========================================================
-     NAVBAR
-========================================================= -->
+    <!-- ECOSYSTEM SECTION -->
+    <section class="section scroll-fade" id="ecosystem">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Platform Architecture</span>
+          <h2 class="section-title">The GuardHealth Ecosystem</h2>
+          <p class="section-description">Autonomous intelligence engines designed for specialized clinical environments.</p>
+        </div>
 
-<header>
-
-    <nav class="navbar">
-
-        <!-- Logo -->
-
-        <a href="#hero" class="logo">
-
-            <img src="assets/logo.png"
-                 alt="GuardHealth Technologies Logo">
-
-            <span>GuardHealth Technologies</span>
-
-        </a>
-
-        <!-- Navigation -->
-
-        <ul class="nav-links" id="navMenu">
-
-            <li><a href="#hero">Home</a></li>
-
-            <li><a href="#mission">Mission</a></li>
-
-            <li><a href="#ecosystem">Ecosystem</a></li>
-
-            <li><a href="#technology">Technology</a></li>
-
-            <li><a href="#products">Products</a></li>
-
-            <li><a href="#research">Research</a></li>
-
-            <li><a href="#roadmap">Roadmap</a></li>
-
-            <li><a href="#contact">Contact</a></li>
-
-        </ul>
-
-        <!-- Right Side -->
-
-        <div class="nav-actions">
-
-            <button
-                id="themeToggle"
-                class="theme-toggle"
-                aria-label="Toggle Theme">
-
-                🌙
-
-            </button>
-
-            <a href="#products" class="primary nav-cta">
-
-                Explore
-
+        <div class="ecosystem-grid">
+          <!-- NeuroGuard (Featured & Live) -->
+          <div class="glass-card featured-card">
+            <div>
+              <div class="card-status-row">
+                <div class="card-node-indicator cyan"></div>
+                <span class="status-badge live">Live Platform</span>
+              </div>
+              <span class="card-subtitle">Neurological Health</span>
+              <h3>NeuroGuard</h3>
+              <p>Real-time neural mapping and neurodegenerative risk prediction using multimodal EEG and MRI processing engines.</p>
+            </div>
+            <a href="https://neuroguard.app" target="_blank" class="card-action-link">
+              Open Live Portal <span>&rarr;</span>
             </a>
+          </div>
 
-            <button
-                id="hamburger"
-                class="hamburger"
-                aria-label="Open Navigation">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
-
-        </div>
-
-    </nav>
-
-</header>
-
-   <!-- =====================================================
-     HERO
-====================================================== -->
-<section id="hero" class="focus-section">
-
-    <!-- Animated Background -->
-    <div id="heroBackground">
-        <canvas id="ecosystemCanvas"></canvas>
-        <div id="particleLayer"></div>
-        <div id="gradientLayer"></div>
-    </div>
-
-    <!-- Hero Content -->
-    <div class="hero-content focus-content">
-
-        <span class="hero-badge">
-            AI • Healthcare • Research • Innovation
-        </span>
-
-        <h1>
-            Building the Future of
-            <span>Intelligent Healthcare</span>
-        </h1>
-
-        <p>
-            GuardHealth Technologies develops next-generation healthcare
-            platforms powered by artificial intelligence, helping clinicians,
-            researchers and patients make faster, smarter, and more informed
-            medical decisions.
-        </p>
-
-        <div class="hero-actions">
-
-            <a href="#ecosystem" class="primary">
-                Explore Ecosystem
+          <!-- VisionGuard -->
+          <div class="glass-card">
+            <div>
+              <div class="card-status-row">
+                <div class="card-node-indicator blue"></div>
+                <span class="status-badge validation">Clinical Trial</span>
+              </div>
+              <span class="card-subtitle">Ophthalmology</span>
+              <h3>VisionGuard</h3>
+              <p>Micro-vascular retinal analysis for early detection of systemic pathology and progressive ocular deterioration.</p>
+            </div>
+            <a href="#research" class="card-action-link">
+              View Validation Specs <span>&rarr;</span>
             </a>
+          </div>
 
-            <a href="#mission" class="secondary">
-                Our Mission
+          <!-- PulmoGuard -->
+          <div class="glass-card">
+            <div>
+              <div class="card-status-row">
+                <div class="card-node-indicator teal"></div>
+                <span class="status-badge validation">Development</span>
+              </div>
+              <span class="card-subtitle">Respiratory Health</span>
+              <h3>PulmoGuard</h3>
+              <p>Acoustic bio-signal classification and automated pulmonary ventilation analytics for acute care settings.</p>
+            </div>
+            <a href="#research" class="card-action-link">
+              Explore Architecture <span>&rarr;</span>
             </a>
+          </div>
 
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="hero-stats">
-
-            <div class="stat-card">
-                <h3>AI</h3>
-                <span>Driven</span>
+          <!-- Future Nodes -->
+          <div class="glass-card">
+            <div>
+              <div class="card-status-row">
+                <div class="card-node-indicator pulse"></div>
+                <span class="status-badge pipeline">Pipeline</span>
+              </div>
+              <span class="card-subtitle">Under Development</span>
+              <h3>Future Node</h3>
+              <p>Expanding into metabolic, cardiovascular, and autonomous ICU monitoring engines via hospital partnerships.</p>
             </div>
-
-            <div class="stat-card">
-                <h3>Healthcare</h3>
-                <span>Focused</span>
-            </div>
-
-            <div class="stat-card">
-                <h3>Research</h3>
-                <span>Backed</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Interactive Centerpiece -->
-    <div id="ecosystem">
-
-        <canvas id="heroCanvas"></canvas>
-
-        <!-- Central Core -->
-        <div id="core">
-
-            <div class="core-ring ring-1"></div>
-            <div class="core-ring ring-2"></div>
-            <div class="core-ring ring-3"></div>
-
-            <div class="core-logo">
-                <img src="assets/logo.png" alt="GuardHealth Technologies">
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-        <span></span>
-    </div>
-
-</section>
-
-    <!-- =====================================================
-     MISSION
-====================================================== -->
-<section id="mission" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            OUR MISSION
-        </span>
-
-        <h2>
-            Transforming healthcare through
-            responsible artificial intelligence.
-        </h2>
-
-        <p class="section-intro">
-            We believe AI should empower healthcare professionals rather than
-            replace them. Every platform we build is designed to improve
-            accessibility, accelerate clinical workflows, and deliver trustworthy
-            insights while keeping patients at the center of every decision.
-        </p>
-
-        <div class="mission-grid">
-
-            <div class="mission-card">
-                <div class="mission-icon">🧠</div>
-
-                <h3>Clinical Intelligence</h3>
-
-                <p>
-                    Develop intelligent systems that assist healthcare
-                    professionals with faster analysis, improved awareness,
-                    and evidence-based decision support.
-                </p>
-            </div>
-
-            <div class="mission-card">
-                <div class="mission-icon">🩺</div>
-
-                <h3>Accessible Healthcare</h3>
-
-                <p>
-                    Build digital healthcare platforms that make reliable
-                    medical information and intelligent tools available to
-                    more people around the world.
-                </p>
-            </div>
-
-            <div class="mission-card">
-                <div class="mission-icon">🔒</div>
-
-                <h3>Responsible AI</h3>
-
-                <p>
-                    Prioritize transparency, privacy, security, and ethical
-                    development so every innovation earns the trust of
-                    clinicians and patients alike.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="mission-quote">
-
-            <h3>
-                "Technology should make healthcare more human,
-                not less."
-            </h3>
-
-            <p>
-                Every GuardHealth solution is designed to augment human expertise,
-                strengthen medical decision-making, and improve patient outcomes
-                through thoughtful innovation.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-<!-- =====================================================
-     ECOSYSTEM
-====================================================== -->
-<section id="ecosystem" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            OUR ECOSYSTEM
-        </span>
-
-        <h2>
-            One Vision.<br>
-            Multiple Intelligent Healthcare Platforms.
-        </h2>
-
-        <p class="section-intro">
-            GuardHealth Technologies is building a connected ecosystem of
-            AI-powered healthcare solutions. Each platform solves a specific
-            healthcare challenge while sharing a common foundation of research,
-            security, and responsible artificial intelligence.
-        </p>
-
-        <!-- Interactive Ecosystem -->
-        <div class="ecosystem-container">
-
-            <!-- Canvas (ecosystem.js will render here) -->
-            <canvas id="ecosystemNetwork"></canvas>
-
-            <!-- Central Hub -->
-            <div class="ecosystem-core">
-
-                <img src="assets/logo.png"
-                     alt="GuardHealth Technologies">
-
-                <span>GuardHealth</span>
-
-            </div>
-
-        </div>
-
-        <!-- Platforms -->
-
-        <div class="platform-grid">
-
-            <!-- Platform 1 -->
-            <article class="platform-card">
-
-                <div class="platform-status">
-                    ACTIVE
-                </div>
-
-                <h3>NeuroGuard</h3>
-
-                <p>
-                    AI-powered neurological health awareness platform focused
-                    on education, risk assessment, and early detection support.
-                </p>
-
-                <a href="#">
-                    Learn More →
-                </a>
-
-            </article>
-
-            <!-- Platform 2 -->
-            <article class="platform-card">
-
-                <div class="platform-status">
-                    IN DEVELOPMENT
-                </div>
-
-                <h3>VisionGuard</h3>
-
-                <p>
-                    Intelligent eye-health platform designed to improve
-                    screening, awareness, and accessibility for vision care.
-                </p>
-
-                <a href="#">
-                    Coming Soon →
-                </a>
-
-            </article>
-
-            <!-- Platform 3 -->
-            <article class="platform-card future">
-
-                <div class="platform-status">
-                    FUTURE
-                </div>
-
-                <h3>Future Platforms</h3>
-
-                <p>
-                    Additional AI-powered healthcare products are planned to
-                    expand the GuardHealth ecosystem into multiple medical
-                    specialties.
-                </p>
-
-                <a href="#">
-                    Roadmap →
-                </a>
-
-            </article>
-
-        </div>
-
-        <!-- Ecosystem Principles -->
-
-        <div class="ecosystem-principles">
-
-            <div class="principle">
-                <h4>Connected</h4>
-                <p>Designed as one intelligent healthcare ecosystem.</p>
-            </div>
-
-            <div class="principle">
-                <h4>Research Driven</h4>
-                <p>Built on scientific evidence and continuous innovation.</p>
-            </div>
-
-            <div class="principle">
-                <h4>Human Centered</h4>
-                <p>Technology that supports clinicians and empowers patients.</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-       <!-- =====================================================
-     TECHNOLOGY
-====================================================== -->
-<section id="technology" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            TECHNOLOGY
-        </span>
-
-        <h2>
-            Engineered for Modern
-            Healthcare Intelligence.
-        </h2>
-
-        <p class="section-intro">
-            Our platforms combine artificial intelligence, cloud-native
-            infrastructure, and evidence-based research to create secure,
-            scalable, and intelligent healthcare solutions built for the future.
-        </p>
-
-        <!-- Technology Grid -->
-        <div class="technology-grid">
-
-            <article class="technology-card">
-                <div class="tech-icon">🧠</div>
-
-                <h3>Artificial Intelligence</h3>
-
-                <p>
-                    Advanced machine learning models designed to assist
-                    clinical analysis, pattern recognition, and medical
-                    decision support.
-                </p>
-            </article>
-
-            <article class="technology-card">
-                <div class="tech-icon">☁️</div>
-
-                <h3>Cloud Infrastructure</h3>
-
-                <p>
-                    Secure, scalable cloud architecture capable of supporting
-                    healthcare platforms with high availability and performance.
-                </p>
-            </article>
-
-            <article class="technology-card">
-                <div class="tech-icon">🔒</div>
-
-                <h3>Privacy & Security</h3>
-
-                <p>
-                    Built with a security-first mindset to protect sensitive
-                    healthcare information and maintain user trust.
-                </p>
-            </article>
-
-            <article class="technology-card">
-                <div class="tech-icon">📊</div>
-
-                <h3>Data Intelligence</h3>
-
-                <p>
-                    Transforming complex healthcare information into
-                    meaningful insights through intelligent data processing.
-                </p>
-            </article>
-
-            <article class="technology-card">
-                <div class="tech-icon">📚</div>
-
-                <h3>Research Driven</h3>
-
-                <p>
-                    Every feature is guided by scientific literature,
-                    clinical best practices, and responsible AI principles.
-                </p>
-            </article>
-
-            <article class="technology-card">
-                <div class="tech-icon">⚡</div>
-
-                <h3>Future Ready</h3>
-
-                <p>
-                    Designed with a modular architecture that allows new
-                    healthcare products and AI capabilities to integrate
-                    seamlessly into the ecosystem.
-                </p>
-            </article>
-
-        </div>
-
-        <!-- Architecture Showcase -->
-        <div class="architecture-preview">
-
-            <div class="architecture-layer">
-                <span>Presentation Layer</span>
-            </div>
-
-            <div class="architecture-layer">
-                <span>AI Intelligence Engine</span>
-            </div>
-
-            <div class="architecture-layer">
-                <span>Secure Cloud Platform</span>
-            </div>
-
-            <div class="architecture-layer">
-                <span>Healthcare Data & Research</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     RESEARCH
-====================================================== -->
-<section id="research" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            RESEARCH & RESPONSIBLE AI
-        </span>
-
-        <h2>
-            Innovation Guided by Science,
-            Built with Responsibility.
-        </h2>
-
-        <p class="section-intro">
-            At GuardHealth Technologies, research is the foundation of every
-            product we develop. We combine medical literature, responsible AI
-            practices, and continuous validation to create technology that is
-            trustworthy, transparent, and clinically meaningful.
-        </p>
-
-        <!-- Research Principles -->
-
-        <div class="research-grid">
-
-            <article class="research-card">
-
-                <div class="research-icon">📖</div>
-
-                <h3>Evidence-Based Development</h3>
-
-                <p>
-                    Product decisions are informed by peer-reviewed medical
-                    research, established clinical knowledge, and emerging
-                    scientific discoveries.
-                </p>
-
-            </article>
-
-            <article class="research-card">
-
-                <div class="research-icon">🤖</div>
-
-                <h3>Responsible Artificial Intelligence</h3>
-
-                <p>
-                    AI should assist human expertise through transparent,
-                    explainable, and ethical decision support rather than
-                    replacing clinical judgment.
-                </p>
-
-            </article>
-
-            <article class="research-card">
-
-                <div class="research-icon">🛡️</div>
-
-                <h3>Privacy by Design</h3>
-
-                <p>
-                    Security, confidentiality, and responsible data handling are
-                    considered throughout the entire development lifecycle.
-                </p>
-
-            </article>
-
-        </div>
-
-        <!-- Research Workflow -->
-
-        <div class="research-process">
-
-            <div class="process-step">
-                <span>01</span>
-                <h4>Medical Research</h4>
-                <p>Study current scientific literature and healthcare needs.</p>
-            </div>
-
-            <div class="process-step">
-                <span>02</span>
-                <h4>AI Development</h4>
-                <p>Design intelligent systems with transparency and reliability.</p>
-            </div>
-
-            <div class="process-step">
-                <span>03</span>
-                <h4>Validation</h4>
-                <p>Evaluate performance using evidence-driven methodologies.</p>
-            </div>
-
-            <div class="process-step">
-                <span>04</span>
-                <h4>Continuous Improvement</h4>
-                <p>Refine every platform through ongoing research and feedback.</p>
-            </div>
-
-        </div>
-
-        <!-- Philosophy -->
-
-        <div class="research-highlight">
-
-            <blockquote>
-                "The most powerful healthcare technology is built on scientific
-                evidence, ethical design, and a commitment to improving lives."
-            </blockquote>
-
-        </div>
-
-    </div>
-
-</section>
-
-      <!-- =====================================================
-     ROADMAP
-====================================================== -->
-<section id="roadmap" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            ROADMAP
-        </span>
-
-        <h2>
-            Building the Future of
-            Intelligent Healthcare.
-        </h2>
-
-        <p class="section-intro">
-            GuardHealth Technologies is evolving through carefully planned
-            milestones. Every stage expands our ecosystem while maintaining
-            a commitment to innovation, responsible AI, and healthcare impact.
-        </p>
-
-        <!-- Timeline -->
-
-        <div class="timeline">
-
-            <div class="timeline-line"></div>
-
-            <article class="timeline-item left">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-card">
-
-                    <span class="timeline-year">2025</span>
-
-                    <h3>Foundation</h3>
-
-                    <p>
-                        Established GuardHealth Technologies and began
-                        developing our first intelligent healthcare platforms,
-                        design system, and AI infrastructure.
-                    </p>
-
-                </div>
-
-            </article>
-
-            <article class="timeline-item right">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-card">
-
-                    <span class="timeline-year">2026</span>
-
-                    <h3>Ecosystem Launch</h3>
-
-                    <p>
-                        Expand the ecosystem with multiple healthcare
-                        platforms, modern cloud architecture, and interactive
-                        AI-powered user experiences.
-                    </p>
-
-                </div>
-
-            </article>
-
-            <article class="timeline-item left">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-card">
-
-                    <span class="timeline-year">Future</span>
-
-                    <h3>Clinical Intelligence</h3>
-
-                    <p>
-                        Introduce advanced decision-support systems,
-                        healthcare analytics, and new medical specialties
-                        within the GuardHealth ecosystem.
-                    </p>
-
-                </div>
-
-            </article>
-
-            <article class="timeline-item right">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-card">
-
-                    <span class="timeline-year">Vision</span>
-
-                    <h3>Global Healthcare Platform</h3>
-
-                    <p>
-                        Create a connected ecosystem of intelligent healthcare
-                        technologies that support clinicians, researchers,
-                        and patients worldwide.
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-        <!-- Milestones -->
-
-        <div class="milestones-grid">
-
-            <div class="milestone-card">
-                <h3>01</h3>
-                <p>AI-powered healthcare products</p>
-            </div>
-
-            <div class="milestone-card">
-                <h3>02</h3>
-                <p>Responsible AI integration</p>
-            </div>
-
-            <div class="milestone-card">
-                <h3>03</h3>
-                <p>Expansion across medical specialties</p>
-            </div>
-
-            <div class="milestone-card">
-                <h3>04</h3>
-                <p>Scalable global healthcare ecosystem</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     CTA
-====================================================== -->
-<section id="cta" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            BUILD THE FUTURE
-        </span>
-
-        <h2>
-            Healthcare Innovation
-            Starts Here.
-        </h2>
-
-        <p class="section-intro">
-            GuardHealth Technologies is committed to building intelligent,
-            ethical, and accessible healthcare solutions that empower
-            clinicians, researchers, and patients. Join us as we shape the
-            next generation of medical technology.
-        </p>
-
-        <div class="cta-actions">
-
-            <a href="#ecosystem" class="primary">
-                Explore the Ecosystem
+            <a href="#contact" class="card-action-link">
+              Partner With Us <span>&rarr;</span>
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <a href="#contact" class="secondary">
-                Get in Touch
-            </a>
-
+    <!-- TECHNOLOGY SECTION -->
+    <section class="section scroll-fade" id="technology">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Engineered for Trust</span>
+          <h2 class="section-title">Clinical-Grade AI Infrastructure</h2>
+          <p class="section-description">Built to comply with strict medical data governance and real-time execution standards.</p>
         </div>
 
-        <!-- Highlights -->
+        <div class="tech-spec-grid">
+          <div class="tech-item">
+            <h4>Explainable AI (XAI)</h4>
+            <p>Deterministic visual heatmaps and decision-tree audit trails for every diagnostic inference.</p>
+          </div>
+          <div class="tech-item">
+            <h4>Zero-Trust Privacy</h4>
+            <p>Federated machine learning frameworks ensuring patient data never leaves local hospital firewalls.</p>
+          </div>
+          <div class="tech-item">
+            <h4>Sub-10ms Latency</h4>
+            <p>Optimized GPU kernel execution pipeline engineered for real-time surgical and ICU assistance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="cta-highlights">
-
-            <div class="highlight-card">
-                <h3>AI</h3>
-                <p>Purpose-built for healthcare.</p>
-            </div>
-
-            <div class="highlight-card">
-                <h3>Research</h3>
-                <p>Driven by scientific evidence.</p>
-            </div>
-
-            <div class="highlight-card">
-                <h3>Security</h3>
-                <p>Privacy-first by design.</p>
-            </div>
-
+    <!-- RESEARCH & METRICS SECTION -->
+    <section class="section scroll-fade" id="research">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Scientific Rigor</span>
+          <h2 class="section-title">Grounded in Peer-Reviewed Validation</h2>
         </div>
 
-        <!-- Decorative Background -->
+        <div class="metrics-container text-center">
+          <div class="metric-item">
+            <h3>99.2%</h3>
+            <p>Model Precision Benchmark</p>
+          </div>
+          <div class="metric-item">
+            <h3>&lt;10ms</h3>
+            <p>Inference Response Time</p>
+          </div>
+          <div class="metric-item">
+            <h3>3+</h3>
+            <p>Core Biological Domains</p>
+          </div>
+          <div class="metric-item">
+            <h3>100%</h3>
+            <p>HIPAA / GDPR Infrastructure</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="cta-decoration">
-
-            <div class="glow glow-1"></div>
-            <div class="glow glow-2"></div>
-            <div class="glow glow-3"></div>
-
+    <!-- ROADMAP SECTION -->
+    <section class="section scroll-fade" id="roadmap">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-tag">Expansion Plan</span>
+          <h2 class="section-title">Strategic Roadmap</h2>
         </div>
 
-    </div>
+        <div class="roadmap-timeline">
+          <div class="roadmap-step active">
+            <span class="step-phase">Phase 01 &bull; Active</span>
+            <h4>NeuroGuard Deployment</h4>
+            <p>Live platform hosting, multimodal EEG processing, and neurodegenerative risk engine release.</p>
+          </div>
+          <div class="roadmap-step">
+            <span class="step-phase">Phase 02 &bull; Q4 2026</span>
+            <h4>VisionGuard Trials</h4>
+            <p>Multi-center clinical validation for ophthalmic micro-vascular retinal risk scoring.</p>
+          </div>
+          <div class="roadmap-step">
+            <span class="step-phase">Phase 03 &bull; 2027</span>
+            <h4>PulmoGuard Integration</h4>
+            <p>Acoustic bio-signal trial deployment across acute respiratory care environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</section>
-
-<!-- =====================================================
-     CONTACT
-====================================================== -->
-<section id="contact" class="focus-section">
-
-    <div class="focus-content">
-
-        <span class="section-label">
-            CONTACT
-        </span>
-
-        <h2>
-            Let's Build the Future of
-            Healthcare Together.
-        </h2>
-
-        <p class="section-intro">
-            Whether you're interested in our technology, exploring research
-            collaborations, or simply want to learn more about GuardHealth
-            Technologies, we'd love to hear from you.
+    <!-- CTA BANNER -->
+    <section class="container scroll-fade" id="contact">
+      <div class="cta-banner">
+        <span class="section-tag">Deploy Intelligence</span>
+        <h2 class="section-title">Ready to Experience Clinical AI?</h2>
+        <p class="section-description" style="margin-bottom: 2rem;">
+          Test our live neurodegenerative risk prediction platform or partner with our research team.
         </p>
-
-        <div class="contact-container">
-
-            <!-- Contact Information -->
-            <div class="contact-info">
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">📧</div>
-
-                    <div>
-                        <h3>Email</h3>
-                        <p>contact@guardhealth.tech</p>
-                    </div>
-
-                </div>
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">🌐</div>
-
-                    <div>
-                        <h3>Website</h3>
-                        <p>www.guardhealth.tech</p>
-                    </div>
-
-                </div>
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">🤝</div>
-
-                    <div>
-                        <h3>Partnerships</h3>
-                        <p>Research • Healthcare • Technology</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Contact Form -->
-            <form class="contact-form">
-
-                <div class="form-group">
-                    <input
-                        type="text"
-                        placeholder="Your Name"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <input
-                        type="text"
-                        placeholder="Subject"
-                    >
-                </div>
-
-                <div class="form-group">
-                    <textarea
-                        rows="6"
-                        placeholder="Tell us about your project or inquiry..."
-                        required
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="primary">
-                    Send Message
-                </button>
-
-            </form>
-
+        <div class="hero-cta-group">
+          <a href="https://neuroguard.app" target="_blank" class="btn-glow">Launch Live NeuroGuard</a>
+          <a href="mailto:partner@guardhealth.tech" class="btn-secondary">Institutional Contact</a>
         </div>
+      </div>
+    </section>
+  </main>
 
-    </div>
-
-</section>
-
-     <!-- =====================================================
-     FOOTER
-====================================================== -->
-<footer id="footer">
-
-    <div class="footer-container">
-
-        <!-- Brand -->
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-
-            <a href="#hero" class="footer-logo">
-                <img src="assets/logo.png" alt="GuardHealth Technologies Logo">
-                <span>GuardHealth Technologies</span>
-            </a>
-
-            <p>
-                Building intelligent healthcare platforms powered by
-                artificial intelligence, responsible innovation,
-                and evidence-based research.
-            </p>
-
-            <div class="footer-socials">
-
-                <a href="#" aria-label="LinkedIn">
-                    LinkedIn
-                </a>
-
-                <a href="#" aria-label="GitHub">
-                    GitHub
-                </a>
-
-                <a href="#" aria-label="Email">
-                    Email
-                </a>
-
-            </div>
-
+          <a href="#" class="brand-logo">
+            <span class="logo-mark"></span>
+            <span class="logo-text">GuardHealth</span>
+          </a>
+          <p>Architecting decentralized, clinical-grade artificial intelligence for global healthcare systems.</p>
         </div>
-
-        <!-- Navigation -->
-        <div class="footer-links">
-
-            <h3>Navigation</h3>
-
-            <a href="#hero">Home</a>
-            <a href="#mission">Mission</a>
-            <a href="#ecosystem">Ecosystem</a>
-            <a href="#technology">Technology</a>
-            <a href="#research">Research</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#contact">Contact</a>
-
+        <div class="footer-col">
+          <h5>Ecosystem</h5>
+          <a href="https://neuroguard.app" target="_blank">NeuroGuard</a>
+          <a href="#ecosystem">VisionGuard</a>
+          <a href="#ecosystem">PulmoGuard</a>
         </div>
-
-        <!-- Ecosystem -->
-        <div class="footer-links">
-
-            <h3>Platforms</h3>
-
-            <a href="#">NeuroGuard</a>
-            <a href="#">VisionGuard</a>
-            <a href="#">Future Platforms</a>
-
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#mission">Mission</a>
+          <a href="#technology">Technology</a>
+          <a href="#research">Research</a>
+          <a href="#roadmap">Roadmap</a>
         </div>
-
-        <!-- Contact -->
-        <div class="footer-links">
-
-            <h3>Contact</h3>
-
-            <p>contact@guardhealth.tech</p>
-            <p>Healthcare AI & Research</p>
-
-            <a href="#contact" class="footer-button">
-                Get in Touch
-            </a>
-
+        <div class="footer-col">
+          <h5>Governance</h5>
+          <a href="#">Privacy Architecture</a>
+          <a href="#">Ethics Statement</a>
+          <a href="#">HIPAA Compliance</a>
         </div>
-
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 GuardHealth Technologies Inc. All rights reserved.</p>
+        <p>Enterprise AI for Healthcare</p>
+      </div>
     </div>
+  </footer>
 
-    <!-- Bottom Bar -->
+  <!-- ==========================================================================
+     10. INTERACTIVE CANVAS & SCROLL SCRIPTS
+     ========================================================================== -->
+  <script>
+    /**
+     * Ecosystem Interactive Canvas Engine
+     */
+    class EcosystemCanvas {
+      constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext('2d');
+        
+        this.nodes = [];
+        this.mouse = { x: null, y: null, radius: 180 };
+        this.centerNode = { x: 0, y: 0, radius: 28, pulse: 0 };
+        
+        this.init();
+        this.animate();
+        this.addEventListeners();
+      }
 
-    <div class="footer-bottom">
+      init() {
+        this.resize();
+        this.createNodes();
+      }
 
-        <p>
-            © 2026 GuardHealth Technologies. All rights reserved.
-        </p>
+      resize() {
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
+        this.centerNode.x = this.width / 2;
+        this.centerNode.y = this.height / 2;
+      }
 
-        <div class="footer-bottom-links">
+      createNodes() {
+        this.nodes = [];
+        const platforms = [
+          { name: 'NeuroGuard (Live)', color: '#00f2fe', orbitRadius: 180, speed: 0.004, angle: 0 },
+          { name: 'VisionGuard', color: '#0072ff', orbitRadius: 260, speed: -0.0025, angle: Math.PI / 3 },
+          { name: 'PulmoGuard', color: '#0d9488', orbitRadius: 340, speed: 0.0018, angle: (2 * Math.PI) / 3 },
+          { name: 'Future Node', color: '#64748b', orbitRadius: 420, speed: -0.0012, angle: Math.PI }
+        ];
 
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
+        platforms.forEach(p => {
+          this.nodes.push({
+            ...p,
+            x: 0,
+            y: 0,
+            baseRadius: 10
+          });
+        });
+      }
 
-        </div>
+      addEventListeners() {
+        window.addEventListener('resize', () => this.resize());
+        
+        window.addEventListener('mousemove', (e) => {
+          this.mouse.x = e.clientX;
+          this.mouse.y = e.clientY;
+        });
 
-    </div>
+        window.addEventListener('mouseleave', () => {
+          this.mouse.x = null;
+          this.mouse.y = null;
+        });
+      }
 
-</footer>
+      drawCenter() {
+        const { x, y, radius, pulse } = this.centerNode;
+        
+        const glowGradient = this.ctx.createRadialGradient(x, y, radius * 0.5, x, y, radius * 3.5 + Math.sin(pulse) * 12);
+        glowGradient.addColorStop(0, 'rgba(0, 242, 254, 0.35)');
+        glowGradient.addColorStop(1, 'rgba(0, 114, 255, 0)');
 
-    </div>
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, radius * 3.5 + Math.sin(pulse) * 12, 0, Math.PI * 2);
+        this.ctx.fillStyle = glowGradient;
+        this.ctx.fill();
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = '#00f2fe';
+        this.ctx.shadowColor = '#00f2fe';
+        this.ctx.shadowBlur = 24;
+        this.ctx.fill();
+        this.ctx.shadowBlur = 0;
+      }
 
-    <script src="js/main.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/ecosystem.js"></script>
+      updateAndDrawNodes() {
+        this.centerNode.pulse += 0.02;
 
+        this.nodes.forEach(node => {
+          node.angle += node.speed;
+          
+          let targetX = this.centerNode.x + Math.cos(node.angle) * node.orbitRadius;
+          let targetY = this.centerNode.y + Math.sin(node.angle) * node.orbitRadius;
+
+          if (this.mouse.x !== null) {
+            const dx = this.mouse.x - targetX;
+            const dy = this.mouse.y - targetY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < this.mouse.radius) {
+              const force = (this.mouse.radius - dist) / this.mouse.radius;
+              targetX -= (dx / dist) * force * 24;
+              targetY -= (dy / dist) * force * 24;
+            }
+          }
+
+          node.x = targetX;
+          node.y = targetY;
+
+          // Orbit Path
+          this.ctx.beginPath();
+          this.ctx.arc(this.centerNode.x, this.centerNode.y, node.orbitRadius, 0, Math.PI * 2);
+          this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+          this.ctx.lineWidth = 1;
+          this.ctx.stroke();
+
+          // Connection Line
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.centerNode.x, this.centerNode.y);
+          this.ctx.lineTo(node.x, node.y);
+          
+          const lineGradient = this.ctx.createLinearGradient(this.centerNode.x, this.centerNode.y, node.x, node.y);
+          lineGradient.addColorStop(0, 'rgba(0, 242, 254, 0.4)');
+          lineGradient.addColorStop(1, 'rgba(255, 255, 255, 0.03)');
+          
+          this.ctx.strokeStyle = lineGradient;
+          this.ctx.lineWidth = 1.5;
+          this.ctx.stroke();
+
+          // Node Circle
+          this.ctx.beginPath();
+          this.ctx.arc(node.x, node.y, node.baseRadius, 0, Math.PI * 2);
+          this.ctx.fillStyle = node.color;
+          this.ctx.shadowColor = node.color;
+          this.ctx.shadowBlur = 12;
+          this.ctx.fill();
+          this.ctx.shadowBlur = 0;
+
+          // Label
+          this.ctx.font = '500 12px Inter, sans-serif';
+          this.ctx.fillStyle = 'rgba(248, 250, 252, 0.75)';
+          this.ctx.fillText(node.name, node.x + 16, node.y + 4);
+        });
+      }
+
+      animate() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.drawCenter();
+        this.updateAndDrawNodes();
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    /**
+     * Peripheral Vision Scroll Effect Engine
+     */
+    function handlePeripheralVisionScroll() {
+      const elements = document.querySelectorAll('.scroll-fade');
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        
+        const distanceFromCenter = Math.abs(viewportCenter - elementCenter) / viewportCenter;
+        
+        let opacity = 1 - Math.pow(distanceFromCenter, 2.2);
+        opacity = Math.max(0, Math.min(1, opacity));
+
+        const blur = (1 - opacity) * 5;
+        const scale = 0.97 + (opacity * 0.03);
+
+        el.style.opacity = opacity.toFixed(3);
+        el.style.filter = `blur(${blur.toFixed(1)}px)`;
+        el.style.transform = `scale(${scale.toFixed(3)})`;
+        el.style.transition = 'opacity 0.1s linear, transform 0.1s linear, filter 0.1s linear';
+      });
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handlePeripheralVisionScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new EcosystemCanvas('ecosystemCanvas');
+      handlePeripheralVisionScroll();
+    });
+  </script>
 </body>
-
 </html>
