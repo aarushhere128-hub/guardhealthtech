@@ -33,27 +33,59 @@
 </head>
 
 <body>
+<!-- =====================================================
+     LOADER
+====================================================== -->
+<div id="loader" aria-label="Loading website">
 
-    <!-- =====================================================
-         LOADER
-    ====================================================== -->
+    <!-- Background -->
+    <div class="loader-background"></div>
 
-    <div id="loader">
+    <!-- Main Content -->
+    <div class="loader-content">
 
-        <!-- Loader Animation -->
+        <!-- Animated Logo -->
+        <div class="loader-logo">
+
+            <div class="loader-ring ring-1"></div>
+            <div class="loader-ring ring-2"></div>
+            <div class="loader-ring ring-3"></div>
+
+            <img
+                src="assets/logo.png"
+                alt="GuardHealth Technologies Logo"
+                draggable="false"
+            >
+
+        </div>
+
+        <!-- Brand -->
+        <div class="loader-brand">
+
+            <h1>GuardHealth Technologies</h1>
+
+            <p>
+                Building Intelligent Healthcare...
+            </p>
+
+        </div>
+
+        <!-- Progress -->
+        <div class="loader-progress">
+
+            <div class="loader-progress-bar"></div>
+
+        </div>
 
     </div>
+
+</div>
 
     <!-- =====================================================
          WEBSITE
     ====================================================== -->
 
     <div id="website">
-
-        <!-- =====================================================
-             NAVBAR
-        ====================================================== -->
-
        <!-- =========================================================
      NAVBAR
 ========================================================= -->
@@ -131,107 +163,964 @@
 
 </header>
 
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
+   <!-- =====================================================
+     HERO
+====================================================== -->
+<section id="hero" class="focus-section">
 
-        <section id="hero">
+    <!-- Animated Background -->
+    <div id="heroBackground">
+        <canvas id="ecosystemCanvas"></canvas>
+        <div id="particleLayer"></div>
+        <div id="gradientLayer"></div>
+    </div>
 
-            <!-- Interactive Hero -->
+    <!-- Hero Content -->
+    <div class="hero-content focus-content">
 
-        </section>
+        <span class="hero-badge">
+            AI • Healthcare • Research • Innovation
+        </span>
 
-        <!-- =====================================================
-             MISSION
-        ====================================================== -->
+        <h1>
+            Building the Future of
+            <span>Intelligent Healthcare</span>
+        </h1>
 
-        <section id="mission">
+        <p>
+            GuardHealth Technologies develops next-generation healthcare
+            platforms powered by artificial intelligence, helping clinicians,
+            researchers and patients make faster, smarter, and more informed
+            medical decisions.
+        </p>
 
-            <!-- Mission -->
+        <div class="hero-actions">
 
-        </section>
+            <a href="#ecosystem" class="primary">
+                Explore Ecosystem
+            </a>
 
-        <!-- =====================================================
-             ECOSYSTEM
-        ====================================================== -->
+            <a href="#mission" class="secondary">
+                Our Mission
+            </a>
 
-        <section id="ecosystem">
+        </div>
 
-            <!-- Interactive Product Ecosystem -->
+        <!-- Quick Stats -->
+        <div class="hero-stats">
 
-        </section>
+            <div class="stat-card">
+                <h3>AI</h3>
+                <span>Driven</span>
+            </div>
 
-        <!-- =====================================================
-             TECHNOLOGY
-        ====================================================== -->
+            <div class="stat-card">
+                <h3>Healthcare</h3>
+                <span>Focused</span>
+            </div>
 
-        <section id="technology">
+            <div class="stat-card">
+                <h3>Research</h3>
+                <span>Backed</span>
+            </div>
 
-            <!-- AI / Infrastructure -->
+        </div>
 
-        </section>
+    </div>
 
-        <!-- =====================================================
-             PRODUCTS
-        ====================================================== -->
+    <!-- Interactive Centerpiece -->
+    <div id="ecosystem">
 
-        <section id="products">
+        <canvas id="heroCanvas"></canvas>
 
-            <!-- NeuroGuard -->
-            <!-- VisionGuard -->
-            <!-- Future Products -->
+        <!-- Central Core -->
+        <div id="core">
 
-        </section>
+            <div class="core-ring ring-1"></div>
+            <div class="core-ring ring-2"></div>
+            <div class="core-ring ring-3"></div>
 
-        <!-- =====================================================
-             RESEARCH
-        ====================================================== -->
+            <div class="core-logo">
+                <img src="assets/logo.png" alt="GuardHealth Technologies">
+            </div>
 
-        <section id="research">
+        </div>
 
-            <!-- Research & Responsible AI -->
+    </div>
 
-        </section>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <span></span>
+    </div>
 
-        <!-- =====================================================
-             ROADMAP
-        ====================================================== -->
+</section>
 
-        <section id="roadmap">
+    <!-- =====================================================
+     MISSION
+====================================================== -->
+<section id="mission" class="focus-section">
 
-            <!-- Timeline -->
+    <div class="focus-content">
 
-        </section>
+        <span class="section-label">
+            OUR MISSION
+        </span>
 
-        <!-- =====================================================
-             CTA
-        ====================================================== -->
+        <h2>
+            Transforming healthcare through
+            responsible artificial intelligence.
+        </h2>
 
-        <section id="cta">
+        <p class="section-intro">
+            We believe AI should empower healthcare professionals rather than
+            replace them. Every platform we build is designed to improve
+            accessibility, accelerate clinical workflows, and deliver trustworthy
+            insights while keeping patients at the center of every decision.
+        </p>
 
-            <!-- Call To Action -->
+        <div class="mission-grid">
 
-        </section>
+            <div class="mission-card">
+                <div class="mission-icon">🧠</div>
 
-        <!-- =====================================================
-             CONTACT
-        ====================================================== -->
+                <h3>Clinical Intelligence</h3>
 
-        <section id="contact">
+                <p>
+                    Develop intelligent systems that assist healthcare
+                    professionals with faster analysis, improved awareness,
+                    and evidence-based decision support.
+                </p>
+            </div>
 
-            <!-- Contact -->
+            <div class="mission-card">
+                <div class="mission-icon">🩺</div>
 
-        </section>
+                <h3>Accessible Healthcare</h3>
 
-        <!-- =====================================================
-             FOOTER
-        ====================================================== -->
+                <p>
+                    Build digital healthcare platforms that make reliable
+                    medical information and intelligent tools available to
+                    more people around the world.
+                </p>
+            </div>
 
-        <footer>
+            <div class="mission-card">
+                <div class="mission-icon">🔒</div>
 
-            <!-- Footer -->
+                <h3>Responsible AI</h3>
 
-        </footer>
+                <p>
+                    Prioritize transparency, privacy, security, and ethical
+                    development so every innovation earns the trust of
+                    clinicians and patients alike.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="mission-quote">
+
+            <h3>
+                "Technology should make healthcare more human,
+                not less."
+            </h3>
+
+            <p>
+                Every GuardHealth solution is designed to augment human expertise,
+                strengthen medical decision-making, and improve patient outcomes
+                through thoughtful innovation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+     ECOSYSTEM
+====================================================== -->
+<section id="ecosystem" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            OUR ECOSYSTEM
+        </span>
+
+        <h2>
+            One Vision.<br>
+            Multiple Intelligent Healthcare Platforms.
+        </h2>
+
+        <p class="section-intro">
+            GuardHealth Technologies is building a connected ecosystem of
+            AI-powered healthcare solutions. Each platform solves a specific
+            healthcare challenge while sharing a common foundation of research,
+            security, and responsible artificial intelligence.
+        </p>
+
+        <!-- Interactive Ecosystem -->
+        <div class="ecosystem-container">
+
+            <!-- Canvas (ecosystem.js will render here) -->
+            <canvas id="ecosystemNetwork"></canvas>
+
+            <!-- Central Hub -->
+            <div class="ecosystem-core">
+
+                <img src="assets/logo.png"
+                     alt="GuardHealth Technologies">
+
+                <span>GuardHealth</span>
+
+            </div>
+
+        </div>
+
+        <!-- Platforms -->
+
+        <div class="platform-grid">
+
+            <!-- Platform 1 -->
+            <article class="platform-card">
+
+                <div class="platform-status">
+                    ACTIVE
+                </div>
+
+                <h3>NeuroGuard</h3>
+
+                <p>
+                    AI-powered neurological health awareness platform focused
+                    on education, risk assessment, and early detection support.
+                </p>
+
+                <a href="#">
+                    Learn More →
+                </a>
+
+            </article>
+
+            <!-- Platform 2 -->
+            <article class="platform-card">
+
+                <div class="platform-status">
+                    IN DEVELOPMENT
+                </div>
+
+                <h3>VisionGuard</h3>
+
+                <p>
+                    Intelligent eye-health platform designed to improve
+                    screening, awareness, and accessibility for vision care.
+                </p>
+
+                <a href="#">
+                    Coming Soon →
+                </a>
+
+            </article>
+
+            <!-- Platform 3 -->
+            <article class="platform-card future">
+
+                <div class="platform-status">
+                    FUTURE
+                </div>
+
+                <h3>Future Platforms</h3>
+
+                <p>
+                    Additional AI-powered healthcare products are planned to
+                    expand the GuardHealth ecosystem into multiple medical
+                    specialties.
+                </p>
+
+                <a href="#">
+                    Roadmap →
+                </a>
+
+            </article>
+
+        </div>
+
+        <!-- Ecosystem Principles -->
+
+        <div class="ecosystem-principles">
+
+            <div class="principle">
+                <h4>Connected</h4>
+                <p>Designed as one intelligent healthcare ecosystem.</p>
+            </div>
+
+            <div class="principle">
+                <h4>Research Driven</h4>
+                <p>Built on scientific evidence and continuous innovation.</p>
+            </div>
+
+            <div class="principle">
+                <h4>Human Centered</h4>
+                <p>Technology that supports clinicians and empowers patients.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+       <!-- =====================================================
+     TECHNOLOGY
+====================================================== -->
+<section id="technology" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            TECHNOLOGY
+        </span>
+
+        <h2>
+            Engineered for Modern
+            Healthcare Intelligence.
+        </h2>
+
+        <p class="section-intro">
+            Our platforms combine artificial intelligence, cloud-native
+            infrastructure, and evidence-based research to create secure,
+            scalable, and intelligent healthcare solutions built for the future.
+        </p>
+
+        <!-- Technology Grid -->
+        <div class="technology-grid">
+
+            <article class="technology-card">
+                <div class="tech-icon">🧠</div>
+
+                <h3>Artificial Intelligence</h3>
+
+                <p>
+                    Advanced machine learning models designed to assist
+                    clinical analysis, pattern recognition, and medical
+                    decision support.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <div class="tech-icon">☁️</div>
+
+                <h3>Cloud Infrastructure</h3>
+
+                <p>
+                    Secure, scalable cloud architecture capable of supporting
+                    healthcare platforms with high availability and performance.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <div class="tech-icon">🔒</div>
+
+                <h3>Privacy & Security</h3>
+
+                <p>
+                    Built with a security-first mindset to protect sensitive
+                    healthcare information and maintain user trust.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <div class="tech-icon">📊</div>
+
+                <h3>Data Intelligence</h3>
+
+                <p>
+                    Transforming complex healthcare information into
+                    meaningful insights through intelligent data processing.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <div class="tech-icon">📚</div>
+
+                <h3>Research Driven</h3>
+
+                <p>
+                    Every feature is guided by scientific literature,
+                    clinical best practices, and responsible AI principles.
+                </p>
+            </article>
+
+            <article class="technology-card">
+                <div class="tech-icon">⚡</div>
+
+                <h3>Future Ready</h3>
+
+                <p>
+                    Designed with a modular architecture that allows new
+                    healthcare products and AI capabilities to integrate
+                    seamlessly into the ecosystem.
+                </p>
+            </article>
+
+        </div>
+
+        <!-- Architecture Showcase -->
+        <div class="architecture-preview">
+
+            <div class="architecture-layer">
+                <span>Presentation Layer</span>
+            </div>
+
+            <div class="architecture-layer">
+                <span>AI Intelligence Engine</span>
+            </div>
+
+            <div class="architecture-layer">
+                <span>Secure Cloud Platform</span>
+            </div>
+
+            <div class="architecture-layer">
+                <span>Healthcare Data & Research</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     RESEARCH
+====================================================== -->
+<section id="research" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            RESEARCH & RESPONSIBLE AI
+        </span>
+
+        <h2>
+            Innovation Guided by Science,
+            Built with Responsibility.
+        </h2>
+
+        <p class="section-intro">
+            At GuardHealth Technologies, research is the foundation of every
+            product we develop. We combine medical literature, responsible AI
+            practices, and continuous validation to create technology that is
+            trustworthy, transparent, and clinically meaningful.
+        </p>
+
+        <!-- Research Principles -->
+
+        <div class="research-grid">
+
+            <article class="research-card">
+
+                <div class="research-icon">📖</div>
+
+                <h3>Evidence-Based Development</h3>
+
+                <p>
+                    Product decisions are informed by peer-reviewed medical
+                    research, established clinical knowledge, and emerging
+                    scientific discoveries.
+                </p>
+
+            </article>
+
+            <article class="research-card">
+
+                <div class="research-icon">🤖</div>
+
+                <h3>Responsible Artificial Intelligence</h3>
+
+                <p>
+                    AI should assist human expertise through transparent,
+                    explainable, and ethical decision support rather than
+                    replacing clinical judgment.
+                </p>
+
+            </article>
+
+            <article class="research-card">
+
+                <div class="research-icon">🛡️</div>
+
+                <h3>Privacy by Design</h3>
+
+                <p>
+                    Security, confidentiality, and responsible data handling are
+                    considered throughout the entire development lifecycle.
+                </p>
+
+            </article>
+
+        </div>
+
+        <!-- Research Workflow -->
+
+        <div class="research-process">
+
+            <div class="process-step">
+                <span>01</span>
+                <h4>Medical Research</h4>
+                <p>Study current scientific literature and healthcare needs.</p>
+            </div>
+
+            <div class="process-step">
+                <span>02</span>
+                <h4>AI Development</h4>
+                <p>Design intelligent systems with transparency and reliability.</p>
+            </div>
+
+            <div class="process-step">
+                <span>03</span>
+                <h4>Validation</h4>
+                <p>Evaluate performance using evidence-driven methodologies.</p>
+            </div>
+
+            <div class="process-step">
+                <span>04</span>
+                <h4>Continuous Improvement</h4>
+                <p>Refine every platform through ongoing research and feedback.</p>
+            </div>
+
+        </div>
+
+        <!-- Philosophy -->
+
+        <div class="research-highlight">
+
+            <blockquote>
+                "The most powerful healthcare technology is built on scientific
+                evidence, ethical design, and a commitment to improving lives."
+            </blockquote>
+
+        </div>
+
+    </div>
+
+</section>
+
+      <!-- =====================================================
+     ROADMAP
+====================================================== -->
+<section id="roadmap" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            ROADMAP
+        </span>
+
+        <h2>
+            Building the Future of
+            Intelligent Healthcare.
+        </h2>
+
+        <p class="section-intro">
+            GuardHealth Technologies is evolving through carefully planned
+            milestones. Every stage expands our ecosystem while maintaining
+            a commitment to innovation, responsible AI, and healthcare impact.
+        </p>
+
+        <!-- Timeline -->
+
+        <div class="timeline">
+
+            <div class="timeline-line"></div>
+
+            <article class="timeline-item left">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-year">2025</span>
+
+                    <h3>Foundation</h3>
+
+                    <p>
+                        Established GuardHealth Technologies and began
+                        developing our first intelligent healthcare platforms,
+                        design system, and AI infrastructure.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="timeline-item right">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-year">2026</span>
+
+                    <h3>Ecosystem Launch</h3>
+
+                    <p>
+                        Expand the ecosystem with multiple healthcare
+                        platforms, modern cloud architecture, and interactive
+                        AI-powered user experiences.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="timeline-item left">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-year">Future</span>
+
+                    <h3>Clinical Intelligence</h3>
+
+                    <p>
+                        Introduce advanced decision-support systems,
+                        healthcare analytics, and new medical specialties
+                        within the GuardHealth ecosystem.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="timeline-item right">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <span class="timeline-year">Vision</span>
+
+                    <h3>Global Healthcare Platform</h3>
+
+                    <p>
+                        Create a connected ecosystem of intelligent healthcare
+                        technologies that support clinicians, researchers,
+                        and patients worldwide.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- Milestones -->
+
+        <div class="milestones-grid">
+
+            <div class="milestone-card">
+                <h3>01</h3>
+                <p>AI-powered healthcare products</p>
+            </div>
+
+            <div class="milestone-card">
+                <h3>02</h3>
+                <p>Responsible AI integration</p>
+            </div>
+
+            <div class="milestone-card">
+                <h3>03</h3>
+                <p>Expansion across medical specialties</p>
+            </div>
+
+            <div class="milestone-card">
+                <h3>04</h3>
+                <p>Scalable global healthcare ecosystem</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     CTA
+====================================================== -->
+<section id="cta" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            BUILD THE FUTURE
+        </span>
+
+        <h2>
+            Healthcare Innovation
+            Starts Here.
+        </h2>
+
+        <p class="section-intro">
+            GuardHealth Technologies is committed to building intelligent,
+            ethical, and accessible healthcare solutions that empower
+            clinicians, researchers, and patients. Join us as we shape the
+            next generation of medical technology.
+        </p>
+
+        <div class="cta-actions">
+
+            <a href="#ecosystem" class="primary">
+                Explore the Ecosystem
+            </a>
+
+            <a href="#contact" class="secondary">
+                Get in Touch
+            </a>
+
+        </div>
+
+        <!-- Highlights -->
+
+        <div class="cta-highlights">
+
+            <div class="highlight-card">
+                <h3>AI</h3>
+                <p>Purpose-built for healthcare.</p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>Research</h3>
+                <p>Driven by scientific evidence.</p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>Security</h3>
+                <p>Privacy-first by design.</p>
+            </div>
+
+        </div>
+
+        <!-- Decorative Background -->
+
+        <div class="cta-decoration">
+
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="glow glow-3"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     CONTACT
+====================================================== -->
+<section id="contact" class="focus-section">
+
+    <div class="focus-content">
+
+        <span class="section-label">
+            CONTACT
+        </span>
+
+        <h2>
+            Let's Build the Future of
+            Healthcare Together.
+        </h2>
+
+        <p class="section-intro">
+            Whether you're interested in our technology, exploring research
+            collaborations, or simply want to learn more about GuardHealth
+            Technologies, we'd love to hear from you.
+        </p>
+
+        <div class="contact-container">
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">📧</div>
+
+                    <div>
+                        <h3>Email</h3>
+                        <p>contact@guardhealth.tech</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">🌐</div>
+
+                    <div>
+                        <h3>Website</h3>
+                        <p>www.guardhealth.tech</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">🤝</div>
+
+                    <div>
+                        <h3>Partnerships</h3>
+                        <p>Research • Healthcare • Technology</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form">
+
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="Subject"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <textarea
+                        rows="6"
+                        placeholder="Tell us about your project or inquiry..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="primary">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+     <!-- =====================================================
+     FOOTER
+====================================================== -->
+<footer id="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+
+            <a href="#hero" class="footer-logo">
+                <img src="assets/logo.png" alt="GuardHealth Technologies Logo">
+                <span>GuardHealth Technologies</span>
+            </a>
+
+            <p>
+                Building intelligent healthcare platforms powered by
+                artificial intelligence, responsible innovation,
+                and evidence-based research.
+            </p>
+
+            <div class="footer-socials">
+
+                <a href="#" aria-label="LinkedIn">
+                    LinkedIn
+                </a>
+
+                <a href="#" aria-label="GitHub">
+                    GitHub
+                </a>
+
+                <a href="#" aria-label="Email">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer-links">
+
+            <h3>Navigation</h3>
+
+            <a href="#hero">Home</a>
+            <a href="#mission">Mission</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#technology">Technology</a>
+            <a href="#research">Research</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+        <!-- Ecosystem -->
+        <div class="footer-links">
+
+            <h3>Platforms</h3>
+
+            <a href="#">NeuroGuard</a>
+            <a href="#">VisionGuard</a>
+            <a href="#">Future Platforms</a>
+
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-links">
+
+            <h3>Contact</h3>
+
+            <p>contact@guardhealth.tech</p>
+            <p>Healthcare AI & Research</p>
+
+            <a href="#contact" class="footer-button">
+                Get in Touch
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 GuardHealth Technologies. All rights reserved.
+        </p>
+
+        <div class="footer-bottom-links">
+
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+
+        </div>
+
+    </div>
+
+</footer>
 
     </div>
 
