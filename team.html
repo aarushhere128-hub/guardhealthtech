@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardHealth — Our Leadership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-canvas: #06080d;
+      --bg-surface: rgba(18, 24, 38, 0.45);
+      --bg-surface-hover: rgba(26, 35, 56, 0.65);
+      
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-glass-hover: rgba(56, 189, 248, 0.35);
+
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #34d399;
+      --accent-violet: #818cf8;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+
+      --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       2. BASE & RESET
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 3rem 1.5rem;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+       3. AMBIENT BACKGROUND VFX
+       ========================================================================== */
+    .vfx-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.28;
+      animation: float 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      top: -10%;
+      left: 15%;
+    }
+
+    .orb-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-violet) 0%, transparent 70%);
+      bottom: -15%;
+      right: 10%;
+      animation-delay: -6s;
+    }
+
+    .orb-3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);
+      top: 40%;
+      left: 45%;
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 80px) scale(0.95); }
+    }
+
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       4. CONTAINER & HEADER
+       ========================================================================== */
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--accent-cyan);
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg, #ffffff 0%, #a0aec0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ==========================================================================
+       5. TEAM CARDS GRID (GLASSMORPHISM + SPOTLIGHT)
+       ========================================================================== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2.5rem 2rem;
+      transition: border-color 0.4s var(--ease-fluid), transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1.5px;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.4),
+        transparent 40%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-fluid);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin-bottom: 2rem;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+      opacity: 0.35;
+      filter: blur(10px);
+      transition: opacity 0.4s var(--ease-fluid);
+    }
+
+    .card:hover .avatar-glow {
+      opacity: 0.75;
+    }
+
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #111726;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    .avatar-initials {
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .role-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .role-ceo { color: var(--accent-cyan); }
+    .role-coo { color: var(--accent-emerald); }
+    .role-cto { color: var(--accent-violet); }
+
+    .member-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+
+    .member-bio {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 400;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Social Links Overlay */
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.3s var(--ease-fluid);
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .social-icon:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .card:hover .social-icon {
+      border-color: var(--border-glass-hover);
+    }
+
+    .expand-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      margin-top: 1.5rem;
+      transition: gap 0.3s var(--ease-fluid);
+    }
+
+    .card:hover .expand-indicator {
+      gap: 0.6rem;
+    }
+
+    /* ==========================================================================
+       6. EXPANDABLE BIO MODAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 12, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-fluid);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #0d1322;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
+      max-width: 650px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.15);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.4s var(--ease-fluid);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-fluid);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-avatar-wrapper {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .modal-body-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-body-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient VFX -->
+  <div class="vfx-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="film-grain"></div>
+
+  <!-- Content Container -->
+  <main class="container">
+    
+    <!-- Section Header -->
+    <header class="header">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        GuardHealth Leadership
+      </div>
+      <h1 class="title">Driven by Vision & Precision</h1>
+      <p class="subtitle">Architecting the future of intelligent health systems with unyielding safety and design elegance.</p>
+    </header>
+
+    <!-- Team Members Grid -->
+    <div class="team-grid">
+
+      <!-- Card 1: Falak Bajwa -->
+      <article class="card" data-member="falak">
+        <div class="avatar-wrapper">
+          <div class="avatar-glow"></div>
+          <div class="avatar">
+            <span class="avatar-initials">FB</span>
+          </div>
+        </div>
+        <div class="role-tag role-ceo">Chief Executive Officer</div>
+        <h2 class="member-name">Falak Bajwa</h2>
+        <p class="member-bio">Leading GuardHealth's overarching vision, strategic expansion, and commitment to revolutionary healthcare technology.</p>
+        
+        <div class="social-links" onclick="event.stopPropagation();">
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </a>
+        </div>
+
+        <div class="expand-indicator">View Full Profile &rarr;</div>
+      </article>
+
+      <!-- Card 2: Anuroop Kaur -->
+      <article class="card" data-member="anuroop">
+        <div class="avatar-wrapper">
+          <div class="avatar-glow"></div>
+          <div class="avatar">
+            <span class="avatar-initials">AK</span>
+          </div>
+        </div>
+        <div class="role-tag role-coo">Chief Operating Officer</div>
+        <h2 class="member-name">Anuroop Kaur</h2>
+        <p class="member-bio">Orchestrating seamless operations, organizational alignment, and scalable execution across all GuardHealth initiatives.</p>
+        
+        <div class="social-links" onclick="event.stopPropagation();">
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+
+        <div class="expand-indicator">View Full Profile &rarr;</div>
+      </article>
+
+      <!-- Card 3: Aarush Sharma -->
+      <article class="card" data-member="aarush">
+        <div class="avatar-wrapper">
+          <div class="avatar-glow"></div>
+          <div class="avatar">
+            <span class="avatar-initials">AS</span>
+          </div>
+        </div>
+        <div class="role-tag role-cto">Chief Technology Officer</div>
+        <h2 class="member-name">Aarush Sharma</h2>
+        <p class="member-bio">Engineering core system architectures, privacy-first technical frameworks, and next-gen technological breakthroughs.</p>
+        
+        <div class="social-links" onclick="event.stopPropagation();">
+          <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </a>
+        </div>
+
+        <div class="expand-indicator">View Full Profile &rarr;</div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Bio Modal Backdrop -->
+  <div class="modal-overlay" id="bioModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <div class="modal-avatar-wrapper">
+          <div class="avatar-glow"></div>
+          <div class="avatar" id="modalAvatar">FB</div>
+        </div>
+        <div>
+          <div class="role-tag" id="modalRole">Chief Executive Officer</div>
+          <h2 class="member-name" id="modalName" style="margin-bottom:0;">Falak Bajwa</h2>
+        </div>
+      </div>
+      
+      <div class="modal-body-title">Executive Background</div>
+      <p class="modal-body-text" id="modalBioText"></p>
+
+      <div class="modal-body-title">Strategic Focus</div>
+      <p class="modal-body-text" id="modalFocusText"></p>
+    </div>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Detailed bio data store
+    const memberDetails = {
+      falak: {
+        name: "Falak Bajwa",
+        role: "Chief Executive Officer",
+        roleClass: "role-ceo",
+        initials: "FB",
+        bio: "Falak oversees GuardHealth's global operations, capital strategy, and market expansion. With a relentless drive to integrate clinical safety with cutting-edge digital infrastructure, Falak spearheads our core vision of healthcare without compromise.",
+        focus: "Building strategic clinical partnerships, investor relations, and guiding the long-term vision of zero-trust patient health monitoring."
+      },
+      anuroop: {
+        name: "Anuroop Kaur",
+        role: "Chief Operating Officer",
+        roleClass: "role-coo",
+        initials: "AK",
+        bio: "Anuroop drives GuardHealth's execution framework, operational scalability, and interdisciplinary team management. She translates high-level technological innovations into seamless real-world deployable healthcare solutions.",
+        focus: "Optimizing organizational efficiency, maintaining regulatory compliance standards, and scaling cross-functional deployment pipelines."
+      },
+      aarush: {
+        name: "Aarush Sharma",
+        role: "Chief Technology Officer",
+        roleClass: "role-cto",
+        initials: "AS",
+        bio: "Aarush leads GuardHealth's engineering and design architecture. Focused on high-performance web systems, real-time telemetry encryption, and ultra-responsive user interfaces, he crafts the core tech backbone powering our platforms.",
+        focus: "Zero-latency health data streaming, hardware-accelerated UI/UX frameworks, and end-to-end telemetry encryption."
+      }
+    };
+
+    // Spotlight cursor tracking
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+
+      // Open Modal on Card Click
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-member');
+        const data = memberDetails[key];
+
+        if (!data) return;
+
+        document.getElementById('modalAvatar').innerText = data.initials;
+        document.getElementById('modalName').innerText = data.name;
+        
+        const roleEl = document.getElementById('modalRole');
+        roleEl.innerText = data.role;
+        roleEl.className = `role-tag ${data.roleClass}`;
+
+        document.getElementById('modalBioText').innerText = data.bio;
+        document.getElementById('modalFocusText').innerText = data.focus;
+
+        document.getElementById('bioModal').classList.add('active');
+        document.body.classList.add('modal-open');
+      });
+    });
+
+    // Close Modal Controls
+    const closeModal = () => {
+      document.getElementById('bioModal').classList.remove('active');
+      document.body.classList.remove('modal-open');
+    };
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('bioModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('bioModal')) closeModal();
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
