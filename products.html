@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GuardHealth — Products & Platform</title>
+  <title>GuardHealth — Our Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -56,6 +56,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
     /* ==========================================================================
        3. AMBIENT BACKGROUND VFX
        ========================================================================== */
@@ -79,8 +83,8 @@
       width: 550px;
       height: 550px;
       background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
-      top: -12%;
-      right: 15%;
+      top: -10%;
+      left: 10%;
     }
 
     .orb-2 {
@@ -88,17 +92,8 @@
       height: 600px;
       background: radial-gradient(circle, var(--accent-violet) 0%, transparent 70%);
       bottom: -15%;
-      left: 10%;
+      right: 10%;
       animation-delay: -6s;
-    }
-
-    .orb-3 {
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);
-      top: 45%;
-      right: 35%;
-      animation-delay: -12s;
     }
 
     @keyframes float {
@@ -128,7 +123,7 @@
 
     .header {
       text-align: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 4rem;
     }
 
     .badge {
@@ -176,155 +171,34 @@
     }
 
     /* ==========================================================================
-       5. PRODUCT CATEGORY SELECTOR TABS
-       ========================================================================== */
-    .tabs-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-glass);
-      padding: 0.75rem 1.75rem;
-      border-radius: 9999px;
-      color: var(--text-muted);
-      font-family: var(--font-primary);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.3s var(--ease-fluid);
-    }
-
-    .tab-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .tab-btn.active {
-      background: rgba(56, 189, 248, 0.12);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-    }
-
-    /* ==========================================================================
-       6. HERO PRODUCT SHOWCASE HERO
-       ========================================================================== */
-    .product-hero {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-glass);
-      border-radius: 28px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 3.5rem 3rem;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .product-hero {
-        grid-template-columns: 1fr;
-        padding: 2.5rem 1.75rem;
-      }
-    }
-
-    .hero-tag {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-cyan);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-title {
-      font-size: 2.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .hero-description {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .metrics-panel {
-      background: rgba(8, 12, 20, 0.6);
-      border: 1px solid var(--border-glass);
-      border-radius: 20px;
-      padding: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .metric-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .metric-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .metric-label {
-      font-size: 0.9rem;
-      color: var(--text-subtle);
-      font-weight: 500;
-    }
-
-    .metric-value {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--accent-emerald);
-      font-family: monospace;
-    }
-
-    /* ==========================================================================
-       7. PRODUCT SPEC GRID (GLASS CARDS)
+       5. FEATURED PRODUCTS GRID
        ========================================================================== */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2.5rem;
     }
 
-    .card {
+    .product-card {
       position: relative;
-      border-radius: 24px;
+      border-radius: 28px;
       background: var(--bg-surface);
       border: 1px solid var(--border-glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 2.5rem 2rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 3rem 2.5rem;
       transition: border-color 0.4s var(--ease-fluid), transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
       overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
-    .card::before {
+    .product-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: 24px;
+      border-radius: 28px;
       padding: 1.5px;
       background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
@@ -339,32 +213,41 @@
       pointer-events: none;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.12);
     }
 
-    .card:hover::before {
+    .product-card:hover::before {
       opacity: 1;
     }
 
-    .card-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+    .card-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-cyan);
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
     }
 
-    .card-icon svg {
-      width: 26px;
-      height: 26px;
+    .neuro-icon {
+      background: rgba(129, 140, 248, 0.12);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      color: var(--accent-violet);
+    }
+
+    .vision-icon {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-cyan);
+    }
+
+    .card-icon-wrapper svg {
+      width: 32px;
+      height: 32px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
@@ -372,49 +255,177 @@
       stroke-linejoin: round;
     }
 
-    .card-title {
-      font-size: 1.35rem;
+    .product-tag {
+      font-size: 0.8rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
     }
 
-    .card-desc {
+    .tag-neuro { color: var(--accent-violet); }
+    .tag-vision { color: var(--accent-cyan); }
+
+    .product-name {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .product-summary {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       line-height: 1.6;
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
+      flex-grow: 1;
     }
 
-    .feature-list {
+    .highlights-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .feature-item {
+    .highlight-item {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.875rem;
+      gap: 0.75rem;
+      font-size: 0.95rem;
       color: var(--text-main);
       font-weight: 500;
     }
 
-    .feature-check {
-      color: var(--accent-emerald);
+    .bullet-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .neuro-dot { background-color: var(--accent-violet); box-shadow: 0 0 8px var(--accent-violet); }
+    .vision-dot { background-color: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: gap 0.3s var(--ease-fluid);
+    }
+
+    .product-card:hover .action-btn {
+      gap: 0.8rem;
+      color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       6. DETAIL MODAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 12, 0.8);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-fluid);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #0b101d;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 32px;
+      max-width: 700px;
+      width: 100%;
+      padding: 3.5rem;
+      position: relative;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.15);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.4s var(--ease-fluid);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.35rem;
+      transition: all 0.3s var(--ease-fluid);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+    }
+
+    .modal-tag {
+      font-size: 0.85rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-section-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-text {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient VFX -->
+  <!-- Ambient VFX Canvas -->
   <div class="vfx-canvas">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
   </div>
   <div class="film-grain"></div>
 
@@ -424,144 +435,135 @@
     <header class="header">
       <div class="badge">
         <span class="badge-dot"></span>
-        Next-Gen Healthcare Architecture
+        GuardHealth Innovations
       </div>
-      <h1 class="title">Security & Intelligence Engine</h1>
-      <p class="subtitle">Deploying real-time vital telemetry, predictive anomaly detection, and end-to-end zero-knowledge security.</p>
+      <h1 class="title">Our Flagship Systems</h1>
+      <p class="subtitle">Next-generation hardware and diagnostic suites engineered for proactive neurological and ocular protection.</p>
     </header>
 
-    <!-- Product Category Tabs -->
-    <div class="tabs-wrapper">
-      <button class="tab-btn active" onclick="switchProduct('shield', this)">GuardShield Telemetry</button>
-      <button class="tab-btn" onclick="switchProduct('pulse', this)">PulseAI Analytics</button>
-      <button class="tab-btn" onclick="switchProduct('sentry', this)">Sentry Core</button>
-    </div>
-
-    <!-- Active Product Hero Card -->
-    <section class="product-hero" id="heroDisplay">
-      <div>
-        <div class="hero-tag" id="heroTag">Real-Time Data Pipeline</div>
-        <h2 class="hero-title" id="heroTitle">GuardShield Telemetry</h2>
-        <p class="hero-description" id="heroDesc">
-          A high-throughput biometric streaming protocol that encrypts and transmits vital sensor streams directly from clinical monitoring devices to secure provider consoles with ultra-low latency.
-        </p>
-      </div>
-
-      <div class="metrics-panel">
-        <div class="metric-row">
-          <span class="metric-label">Latency Speed</span>
-          <span class="metric-value" id="metricLatency">&lt; 4ms</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-label">Encryption Standard</span>
-          <span class="metric-value" id="metricEncrypt">AES-256-GCM</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-label">Uptime SLA</span>
-          <span class="metric-value" id="metricUptime">99.999%</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Product Features Grid -->
+    <!-- Product Grid -->
     <div class="products-grid">
 
-      <!-- Spec Card 1 -->
-      <article class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- NeuroGuard Card -->
+      <article class="product-card" data-product="neuroguard">
+        <div class="card-icon-wrapper neuro-icon">
+          <!-- Brain / Neural Network Icon -->
+          <svg viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04Z"/></svg>
         </div>
-        <h3 class="card-title">Zero-Knowledge Vault</h3>
-        <p class="card-desc">Patient health data is encrypted client-side before touching the network layer, guaranteeing complete privacy compliance.</p>
-        <ul class="feature-list">
-          <li class="feature-item"><span class="feature-check">&#10003;</span> HIPAA & GDPR Native</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Hardware Security Module (HSM)</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Dynamic Audit Logging</li>
+        <div class="product-tag tag-neuro">Neurological Diagnostics</div>
+        <h2 class="product-name">NeuroGuard</h2>
+        <p class="product-summary">Continuous neural monitoring system designed to detect subtle brain activity anomalies, early seizure patterns, and cognitive strain in real time.</p>
+        
+        <ul class="highlights-list">
+          <li class="highlight-item"><span class="bullet-dot neuro-dot"></span> Real-time EEG & Cognitive Waveform Tracking</li>
+          <li class="highlight-item"><span class="bullet-dot neuro-dot"></span> Predictive Seizure & Migraine Alerts</li>
+          <li class="highlight-item"><span class="bullet-dot neuro-dot"></span> Non-Invasive Wireless Neural Band</li>
         </ul>
+
+        <div class="action-btn">Explore NeuroGuard Breakdown &rarr;</div>
       </article>
 
-      <!-- Spec Card 2 -->
-      <article class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <!-- VisionGuard Card -->
+      <article class="product-card" data-product="visionguard">
+        <div class="card-icon-wrapper vision-icon">
+          <!-- Eye / Vision Icon -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/></svg>
         </div>
-        <h3 class="card-title">Neural Early Warning</h3>
-        <p class="card-desc">Machine learning models continuously evaluate cardiovascular and respiratory waveform patterns to catch critical risks earlier.</p>
-        <ul class="feature-list">
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Predictive Arrhythmia Detection</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Sub-second Alert Dispatch</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Custom Threshold Triggers</li>
+        <div class="product-tag tag-vision">Ocular & Retinal Analytics</div>
+        <h2 class="product-name">VisionGuard</h2>
+        <p class="product-summary">Advanced optical monitoring suite providing continuous intraocular pressure sensing, macular strain analysis, and early vision-loss screening.</p>
+        
+        <ul class="highlights-list">
+          <li class="highlight-item"><span class="bullet-dot vision-dot"></span> Dynamic Intraocular Pressure (IOP) Tracking</li>
+          <li class="highlight-item"><span class="bullet-dot vision-dot"></span> AI Retinal Micro-Vascular Scan</li>
+          <li class="highlight-item"><span class="bullet-dot vision-dot"></span> Blue Light Fatigue & Macular Shield</li>
         </ul>
-      </article>
 
-      <!-- Spec Card 3 -->
-      <article class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h3 class="card-title">Unified Clinical Console</h3>
-        <p class="card-desc">A responsive, high-density dashboard built for intensive care units and emergency medical command centers.</p>
-        <ul class="feature-list">
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Multi-bed Concurrent Views</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Low-Light Eye-Relaxing UI</li>
-          <li class="feature-item"><span class="feature-check">&#10003;</span> Cross-Platform Sync</li>
-        </ul>
+        <div class="action-btn">Explore VisionGuard Breakdown &rarr;</div>
       </article>
 
     </div>
   </main>
 
+  <!-- Modal View -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-tag" id="mTag">Neurological Diagnostics</div>
+      <h2 class="modal-title" id="mTitle">NeuroGuard</h2>
+
+      <div class="modal-section-title">Overview</div>
+      <p class="modal-text" id="mOverview"></p>
+
+      <div class="modal-section-title">Core Capability</div>
+      <p class="modal-text" id="mCapability"></p>
+
+      <div class="modal-section-title">Clinical Impact</div>
+      <p class="modal-text" id="mImpact"></p>
+    </div>
+  </div>
+
   <script>
-    // Product data registry for dynamic tab switcher
-    const products = {
-      shield: {
-        tag: "Real-Time Data Pipeline",
-        title: "GuardShield Telemetry",
-        desc: "A high-throughput biometric streaming protocol that encrypts and transmits vital sensor streams directly from clinical monitoring devices to secure provider consoles with ultra-low latency.",
-        latency: "< 4ms",
-        encrypt: "AES-256-GCM",
-        uptime: "99.999%"
+    const productData = {
+      neuroguard: {
+        tag: "Neurological Diagnostics",
+        tagClass: "tag-neuro",
+        title: "NeuroGuard",
+        overview: "NeuroGuard is GuardHealth's flagship neuro-monitoring wearable. By reading multi-channel brainwave frequencies, it maps cognitive load, stress spikes, and neurological sync in real time.",
+        capability: "Utilizes ultra-sensitive dry-sensor EEG technology that requires zero gel or complex clinical setup. The system processes raw neural telemetry locally on-device for total privacy.",
+        impact: "Enables patients and doctors to flag early warning signs for neurological episodes, chronic stress, and cognitive exhaustion hours before symptoms manifest physically."
       },
-      pulse: {
-        tag: "Predictive Intelligence",
-        title: "PulseAI Analytics",
-        desc: "An advanced algorithmic engine running real-time pattern analysis on incoming vitals to flag physiological decompensation up to 4 hours before acute clinical onset.",
-        latency: "< 12ms",
-        encrypt: "Post-Quantum 512",
-        uptime: "99.98%"
-      },
-      sentry: {
-        tag: "Identity & Access Core",
-        title: "Sentry Core",
-        desc: "Hardware-enforced biometric authentication and role-based access control ensuring only authorized ICU specialists and physicians can unencrypt patient streams.",
-        latency: "< 1ms",
-        encrypt: "Zero-Knowledge Proofs",
-        uptime: "100%"
+      visionguard: {
+        tag: "Ocular & Retinal Analytics",
+        tagClass: "tag-vision",
+        title: "VisionGuard",
+        overview: "VisionGuard combines high-precision optical sensor hardware with neural optic algorithms to monitor eye health, retinal nerve density, and corneal pressure changes continuously.",
+        capability: "Uses non-invasive ambient optical refraction to measure micro-changes in macular blood flow and intraocular pressure throughout the user's daily routine.",
+        impact: "Prevents irreversible vision degradation by detecting early indicators of glaucoma, diabetic retinopathy, and severe optic nerve strain with surgical precision."
       }
     };
 
-    function switchProduct(key, btn) {
-      const data = products[key];
-      if (!data) return;
-
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      document.getElementById('heroTag').innerText = data.tag;
-      document.getElementById('heroTitle').innerText = data.title;
-      document.getElementById('heroDesc').innerText = data.desc;
-      document.getElementById('metricLatency').innerText = data.latency;
-      document.getElementById('metricEncrypt').innerText = data.encrypt;
-      document.getElementById('metricUptime').innerText = data.uptime;
-    }
-
-    // Dynamic Spotlight Cursor tracking
-    document.querySelectorAll('.card').forEach(card => {
+    // Card Hover Spotlight
+    document.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
         card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
       });
+
+      // Modal Trigger
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-product');
+        const data = productData[key];
+        if (!data) return;
+
+        const tagEl = document.getElementById('mTag');
+        tagEl.innerText = data.tag;
+        tagEl.className = `modal-tag ${data.tagClass}`;
+
+        document.getElementById('mTitle').innerText = data.title;
+        document.getElementById('mOverview').innerText = data.overview;
+        document.getElementById('mCapability').innerText = data.capability;
+        document.getElementById('mImpact').innerText = data.impact;
+
+        document.getElementById('productModal').classList.add('active');
+        document.body.classList.add('modal-open');
+      });
+    });
+
+    // Close Controls
+    const closeModal = () => {
+      document.getElementById('productModal').classList.remove('active');
+      document.body.classList.remove('modal-open');
+    };
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('productModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('productModal')) closeModal();
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
     });
   </script>
 </body>
