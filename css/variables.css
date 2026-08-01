@@ -1,149 +1,165 @@
 /* =========================================================
    GuardHealth Technologies
    variables.css
+   Global Design System
 ========================================================= */
 
 :root{
 
     /* =====================================================
-       Brand Colors
+       BRAND COLORS
     ===================================================== */
 
-    --primary: #0A3D62;
-    --primary-light: #145DA0;
-    --secondary: #00B8D9;
-    --accent: #16C784;
+    --primary:#0A3D62;
+    --primary-light:#145DA0;
+    --secondary:#00B8D9;
+    --accent:#16C784;
 
     /* =====================================================
-       Backgrounds
+       BACKGROUNDS
     ===================================================== */
 
-    --bg: #F8FBFD;
-    --bg-secondary: #EEF4F8;
-    --bg-dark: #08131F;
+    --bg:#F8FBFD;
+    --bg-secondary:#EEF5F9;
+    --bg-tertiary:#FFFFFF;
 
     /* =====================================================
-       Surfaces
+       TEXT
     ===================================================== */
 
-    --surface: rgba(255,255,255,0.72);
-    --surface-solid: #FFFFFF;
-    --surface-dark: rgba(18,24,38,0.85);
+    --text:#14213D;
+    --text-light:#5D6B7C;
+    --text-muted:#93A4B5;
+    --text-white:#FFFFFF;
 
     /* =====================================================
-       Typography
+       GLASS
     ===================================================== */
 
-    --text: #14213D;
-    --text-light: #5C6B7A;
-    --text-muted: #90A0AF;
-    --text-white: #FFFFFF;
+    --glass:rgba(255,255,255,.62);
+    --glass-dark:rgba(15,23,42,.72);
+
+    --glass-border:rgba(255,255,255,.35);
+    --border:rgba(20,33,61,.08);
+
+    --blur:blur(18px);
 
     /* =====================================================
-       Borders
+       SHADOWS
     ===================================================== */
 
-    --border: rgba(20,33,61,0.08);
-    --border-light: rgba(255,255,255,0.35);
+    --shadow-sm:0 8px 24px rgba(10,61,98,.08);
+
+    --shadow-md:0 18px 45px rgba(10,61,98,.12);
+
+    --shadow-lg:0 35px 80px rgba(10,61,98,.18);
 
     /* =====================================================
-       Shadows
+       GLOWS
     ===================================================== */
 
-    --shadow-sm: 0 6px 18px rgba(10,61,98,.08);
-    --shadow-md: 0 15px 40px rgba(10,61,98,.12);
-    --shadow-lg: 0 30px 80px rgba(10,61,98,.18);
+    --glow-blue:
+        0 0 40px rgba(0,184,217,.30);
+
+    --glow-green:
+        0 0 40px rgba(22,199,132,.28);
 
     /* =====================================================
-       Glow Effects
+       GRADIENTS
     ===================================================== */
 
-    --glow-blue: 0 0 40px rgba(0,184,217,.35);
-    --glow-green: 0 0 40px rgba(22,199,132,.30);
+    --gradient-primary:
+        linear-gradient(
+            135deg,
+            #0A3D62,
+            #145DA0
+        );
+
+    --gradient-secondary:
+        linear-gradient(
+            135deg,
+            #00B8D9,
+            #16C784
+        );
+
+    --gradient-background:
+        radial-gradient(
+            circle at top,
+            rgba(0,184,217,.10),
+            transparent 60%
+        );
 
     /* =====================================================
-       Gradients
+       BORDER RADIUS
     ===================================================== */
 
-    --gradient-primary: linear-gradient(
-        135deg,
-        #0A3D62,
-        #145DA0
-    );
-
-    --gradient-accent: linear-gradient(
-        135deg,
-        #00B8D9,
-        #16C784
-    );
-
-    --gradient-hero: radial-gradient(
-        circle at top,
-        rgba(0,184,217,.12),
-        transparent 60%
-    );
+    --radius-sm:12px;
+    --radius-md:20px;
+    --radius-lg:30px;
+    --radius-xl:42px;
+    --radius-pill:999px;
 
     /* =====================================================
-       Glass Effect
+       LAYOUT
     ===================================================== */
 
-    --glass: rgba(255,255,255,.55);
-    --glass-border: rgba(255,255,255,.35);
-    --blur: blur(18px);
+    --container:1280px;
+    --navbar-height:84px;
+
+    --section-padding:140px;
 
     /* =====================================================
-       Border Radius
+       TYPOGRAPHY
     ===================================================== */
 
-    --radius-sm: 12px;
-    --radius-md: 18px;
-    --radius-lg: 28px;
-    --radius-xl: 42px;
-    --radius-pill: 999px;
+    --font:"Inter",sans-serif;
+
+    --fs-small:.85rem;
+    --fs-body:1rem;
+    --fs-large:1.15rem;
+
+    --fw-regular:400;
+    --fw-medium:500;
+    --fw-semibold:600;
+    --fw-bold:700;
+    --fw-black:800;
 
     /* =====================================================
-       Layout
+       TRANSITIONS
     ===================================================== */
 
-    --container: 1280px;
-    --navbar-height: 82px;
+    --transition-fast:.25s ease;
 
-    /* =====================================================
-       Animation
-    ===================================================== */
+    --transition:
+        .4s cubic-bezier(.22,1,.36,1);
 
-    --transition-fast: .25s ease;
-    --transition: .4s cubic-bezier(.22,1,.36,1);
-    --transition-slow: .8s cubic-bezier(.22,1,.36,1);
+    --transition-slow:
+        .8s cubic-bezier(.22,1,.36,1);
 
 }
 
-
 /* =========================================================
-   Dark Theme
+   DARK THEME
 ========================================================= */
 
 [data-theme="dark"]{
 
     --bg:#07111D;
-    --bg-secondary:#101B2B;
+    --bg-secondary:#0D1726;
+    --bg-tertiary:#111C2C;
 
-    --surface:rgba(20,28,42,.72);
-    --surface-solid:#111C2D;
-    --surface-dark:#111827;
+    --text:#F5F7FA;
+    --text-light:#B8C5D3;
+    --text-muted:#8090A2;
 
-    --text:#F4F7FA;
-    --text-light:#B7C4D3;
-    --text-muted:#7E8C9B;
+    --glass:rgba(18,27,41,.68);
+    --glass-dark:rgba(9,15,25,.90);
 
-    --border:rgba(255,255,255,.08);
-    --border-light:rgba(255,255,255,.12);
-
-    --glass:rgba(18,25,38,.55);
     --glass-border:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.08);
 
-    --shadow-sm:0 8px 20px rgba(0,0,0,.25);
-    --shadow-md:0 18px 45px rgba(0,0,0,.35);
-    --shadow-lg:0 30px 80px rgba(0,0,0,.45);
+    --shadow-sm:0 8px 20px rgba(0,0,0,.28);
+    --shadow-md:0 18px 45px rgba(0,0,0,.38);
+    --shadow-lg:0 40px 90px rgba(0,0,0,.55);
 
 }
