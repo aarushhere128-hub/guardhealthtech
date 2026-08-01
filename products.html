@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardHealth — Products & Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-canvas: #06080d;
+      --bg-surface: rgba(18, 24, 38, 0.45);
+      --bg-surface-hover: rgba(26, 35, 56, 0.65);
+      
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-glass-hover: rgba(56, 189, 248, 0.35);
+
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #34d399;
+      --accent-violet: #818cf8;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+
+      --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       2. BASE & RESET
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 3rem 1.5rem;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       3. AMBIENT BACKGROUND VFX
+       ========================================================================== */
+    .vfx-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.28;
+      animation: float 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      top: -12%;
+      right: 15%;
+    }
+
+    .orb-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-violet) 0%, transparent 70%);
+      bottom: -15%;
+      left: 10%;
+      animation-delay: -6s;
+    }
+
+    .orb-3 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);
+      top: 45%;
+      right: 35%;
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 80px) scale(0.95); }
+    }
+
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       4. CONTAINER & HEADER
+       ========================================================================== */
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--accent-cyan);
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(180deg, #ffffff 0%, #a0aec0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ==========================================================================
+       5. PRODUCT CATEGORY SELECTOR TABS
+       ========================================================================== */
+    .tabs-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      color: var(--text-muted);
+      font-family: var(--font-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s var(--ease-fluid);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tab-btn.active {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    }
+
+    /* ==========================================================================
+       6. HERO PRODUCT SHOWCASE HERO
+       ========================================================================== */
+    .product-hero {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 28px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 3.5rem 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .product-hero {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.75rem;
+      }
+    }
+
+    .hero-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .metrics-panel {
+      background: rgba(8, 12, 20, 0.6);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .metric-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+    }
+
+    .metric-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      font-family: monospace;
+    }
+
+    /* ==========================================================================
+       7. PRODUCT SPEC GRID (GLASS CARDS)
+       ========================================================================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2.5rem 2rem;
+      transition: border-color 0.4s var(--ease-fluid), transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1.5px;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.4),
+        transparent 40%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-fluid);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      margin-bottom: 1.75rem;
+    }
+
+    .card-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .feature-check {
+      color: var(--accent-emerald);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient VFX -->
+  <div class="vfx-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="film-grain"></div>
+
+  <main class="container">
+    
+    <!-- Section Header -->
+    <header class="header">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Next-Gen Healthcare Architecture
+      </div>
+      <h1 class="title">Security & Intelligence Engine</h1>
+      <p class="subtitle">Deploying real-time vital telemetry, predictive anomaly detection, and end-to-end zero-knowledge security.</p>
+    </header>
+
+    <!-- Product Category Tabs -->
+    <div class="tabs-wrapper">
+      <button class="tab-btn active" onclick="switchProduct('shield', this)">GuardShield Telemetry</button>
+      <button class="tab-btn" onclick="switchProduct('pulse', this)">PulseAI Analytics</button>
+      <button class="tab-btn" onclick="switchProduct('sentry', this)">Sentry Core</button>
+    </div>
+
+    <!-- Active Product Hero Card -->
+    <section class="product-hero" id="heroDisplay">
+      <div>
+        <div class="hero-tag" id="heroTag">Real-Time Data Pipeline</div>
+        <h2 class="hero-title" id="heroTitle">GuardShield Telemetry</h2>
+        <p class="hero-description" id="heroDesc">
+          A high-throughput biometric streaming protocol that encrypts and transmits vital sensor streams directly from clinical monitoring devices to secure provider consoles with ultra-low latency.
+        </p>
+      </div>
+
+      <div class="metrics-panel">
+        <div class="metric-row">
+          <span class="metric-label">Latency Speed</span>
+          <span class="metric-value" id="metricLatency">&lt; 4ms</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Encryption Standard</span>
+          <span class="metric-value" id="metricEncrypt">AES-256-GCM</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Uptime SLA</span>
+          <span class="metric-value" id="metricUptime">99.999%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Features Grid -->
+    <div class="products-grid">
+
+      <!-- Spec Card 1 -->
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="card-title">Zero-Knowledge Vault</h3>
+        <p class="card-desc">Patient health data is encrypted client-side before touching the network layer, guaranteeing complete privacy compliance.</p>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-check">&#10003;</span> HIPAA & GDPR Native</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Hardware Security Module (HSM)</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Dynamic Audit Logging</li>
+        </ul>
+      </article>
+
+      <!-- Spec Card 2 -->
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3 class="card-title">Neural Early Warning</h3>
+        <p class="card-desc">Machine learning models continuously evaluate cardiovascular and respiratory waveform patterns to catch critical risks earlier.</p>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Predictive Arrhythmia Detection</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Sub-second Alert Dispatch</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Custom Threshold Triggers</li>
+        </ul>
+      </article>
+
+      <!-- Spec Card 3 -->
+      <article class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="card-title">Unified Clinical Console</h3>
+        <p class="card-desc">A responsive, high-density dashboard built for intensive care units and emergency medical command centers.</p>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Multi-bed Concurrent Views</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Low-Light Eye-Relaxing UI</li>
+          <li class="feature-item"><span class="feature-check">&#10003;</span> Cross-Platform Sync</li>
+        </ul>
+      </article>
+
+    </div>
+  </main>
+
+  <script>
+    // Product data registry for dynamic tab switcher
+    const products = {
+      shield: {
+        tag: "Real-Time Data Pipeline",
+        title: "GuardShield Telemetry",
+        desc: "A high-throughput biometric streaming protocol that encrypts and transmits vital sensor streams directly from clinical monitoring devices to secure provider consoles with ultra-low latency.",
+        latency: "< 4ms",
+        encrypt: "AES-256-GCM",
+        uptime: "99.999%"
+      },
+      pulse: {
+        tag: "Predictive Intelligence",
+        title: "PulseAI Analytics",
+        desc: "An advanced algorithmic engine running real-time pattern analysis on incoming vitals to flag physiological decompensation up to 4 hours before acute clinical onset.",
+        latency: "< 12ms",
+        encrypt: "Post-Quantum 512",
+        uptime: "99.98%"
+      },
+      sentry: {
+        tag: "Identity & Access Core",
+        title: "Sentry Core",
+        desc: "Hardware-enforced biometric authentication and role-based access control ensuring only authorized ICU specialists and physicians can unencrypt patient streams.",
+        latency: "< 1ms",
+        encrypt: "Zero-Knowledge Proofs",
+        uptime: "100%"
+      }
+    };
+
+    function switchProduct(key, btn) {
+      const data = products[key];
+      if (!data) return;
+
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('heroTag').innerText = data.tag;
+      document.getElementById('heroTitle').innerText = data.title;
+      document.getElementById('heroDesc').innerText = data.desc;
+      document.getElementById('metricLatency').innerText = data.latency;
+      document.getElementById('metricEncrypt').innerText = data.encrypt;
+      document.getElementById('metricUptime').innerText = data.uptime;
+    }
+
+    // Dynamic Spotlight Cursor tracking
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+  </script>
+</body>
+</html>
